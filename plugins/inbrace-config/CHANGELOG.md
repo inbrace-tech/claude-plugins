@@ -14,29 +14,29 @@ The plugin was named `claude-config` before 0.4.0. Entries before 0.7.0 are cond
 
 ### Minor Changes
 
-- Add the Claude Haiku 4.5 → Haiku 5.5 transition audit, started with `/inbrace-config:audit-haiku-5-5`, with its known traps, change digest and regression cases. ([#136](https://github.com/inbrace-tech/claude-skills/pull/136) by [@ropdias](https://github.com/ropdias))
+- Add the Claude Haiku 4.5 → Haiku 5.5 transition audit, started with `/inbrace-config:audit-haiku-5-5`, with its known traps, change digest and regression cases. ([#136](https://github.com/inbrace-tech/claude-plugins/pull/136) by [@ropdias](https://github.com/ropdias))
 
 ### Patch Changes
 
-- Sonnet 5 → 5.5 audit: price Claude Sonnet 5.5 cache reads at USD 0.10 per million tokens, half Sonnet 5's, and flag a price entry copied from Sonnet 5. ([#138](https://github.com/inbrace-tech/claude-skills/pull/138) by [@ropdias](https://github.com/ropdias))
+- Sonnet 5 → 5.5 audit: price Claude Sonnet 5.5 cache reads at USD 0.10 per million tokens, half Sonnet 5's, and flag a price entry copied from Sonnet 5. ([#138](https://github.com/inbrace-tech/claude-plugins/pull/138) by [@ropdias](https://github.com/ropdias))
 
 ## 0.7.0
 
 ### Minor Changes
 
-- The audit works only from the change digest shipped with each transition: the drift stage and the docs-only mode are gone, and the contribution invite only gives a link. ([#114](https://github.com/inbrace-tech/claude-skills/pull/114) by [@ropdias](https://github.com/ropdias))
+- The audit works only from the change digest shipped with each transition: the drift stage and the docs-only mode are gone, and the contribution invite only gives a link. ([#114](https://github.com/inbrace-tech/claude-plugins/pull/114) by [@ropdias](https://github.com/ropdias))
 
 ### Patch Changes
 
-- The Sonnet regression fixture's sample clients leave their credential to the SDK. ([#103](https://github.com/inbrace-tech/claude-skills/pull/103) by [@ropdias](https://github.com/ropdias))
+- The Sonnet regression fixture's sample clients leave their credential to the SDK. ([#103](https://github.com/inbrace-tech/claude-plugins/pull/103) by [@ropdias](https://github.com/ropdias))
 
-- Two known traps follow the docs as they read today: Opus P04's passage is re-recorded, and Sonnet P25 now says Opus 5.5 reads Sonnet 5.5 thinking blocks on the Claude API and Google Cloud. ([#112](https://github.com/inbrace-tech/claude-skills/pull/112) by [@ropdias](https://github.com/ropdias))
+- Two known traps follow the docs as they read today: Opus P04's passage is re-recorded, and Sonnet P25 now says Opus 5.5 reads Sonnet 5.5 thinking blocks on the Claude API and Google Cloud. ([#112](https://github.com/inbrace-tech/claude-plugins/pull/112) by [@ropdias](https://github.com/ropdias))
 
-- Every passage the knowledge files quote was re-checked against Anthropic's docs on 2026-10-06 and still holds, so each `verified` date now reads 2026-10-06. ([#123](https://github.com/inbrace-tech/claude-skills/pull/123) by [@ropdias](https://github.com/ropdias))
+- Every passage the knowledge files quote was re-checked against Anthropic's docs on 2026-10-06 and still holds, so each `verified` date now reads 2026-10-06. ([#123](https://github.com/inbrace-tech/claude-plugins/pull/123) by [@ropdias](https://github.com/ropdias))
 
-- Each transition ships a change digest beside its known traps: what changed between the two models, each item with its page and a short quoted passage. ([#111](https://github.com/inbrace-tech/claude-skills/pull/111) by [@ropdias](https://github.com/ropdias))
+- Each transition ships a change digest beside its known traps: what changed between the two models, each item with its page and a short quoted passage. ([#111](https://github.com/inbrace-tech/claude-plugins/pull/111) by [@ropdias](https://github.com/ropdias))
 
-- The README and descriptions say the audit works from the docs as recorded and dated in the plugin. ([#115](https://github.com/inbrace-tech/claude-skills/pull/115) by [@ropdias](https://github.com/ropdias))
+- The README and descriptions say the audit works from the docs as recorded and dated in the plugin. ([#115](https://github.com/inbrace-tech/claude-plugins/pull/115) by [@ropdias](https://github.com/ropdias))
 
 ## 0.6.3
 

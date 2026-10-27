@@ -4,152 +4,152 @@
     {
       "id": "P01",
       "learned": "Added with the project-level recommendation of Opus 5.5 at `medium`, shared or local, since a top-level `effortLevel` in the user's settings does not count for Opus 5.5 (#7). In 0.6.1 a level saved for Opus 5.5 in the user's settings stopped counting as already set: in the 2026-09-29 capability evaluation a run dismissed the trap on the auditor's own `modelSettings` entry, which the project's other developers and CI never get (#77). Re-verified on 2026-10-27 (#151): Opus 4.7 and later now run with the 1M window by default on Bedrock, Agent Platform and Foundry too, so the suffix no longer keeps a context choice on other providers; the one line names `CLAUDE_CODE_DISABLE_1M_CONTEXT` instead.",
-      "refs": { "inbrace-tech/claude-skills": [7, 77], "inbrace-tech/claude-plugins": [151] }
+      "refs": { "inbrace-tech/claude-plugins": [7, 77], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P02",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1).",
-      "refs": { "inbrace-tech/claude-skills": [1] }
+      "refs": { "inbrace-tech/claude-plugins": [1] }
     },
     {
       "id": "P03",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [1, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [1, 61] }
     },
     {
       "id": "P04",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.2 it went into the knowledge file's `<unquoted>` block: a live run stopped on a `reasoning_extraction` refusal after reading its lines, so the audit now finds them by number and never reads or quotes them (#87).",
-      "refs": { "inbrace-tech/claude-skills": [1, 61, 87] }
+      "refs": { "inbrace-tech/claude-plugins": [1, 61, 87] }
     },
     {
       "id": "P05",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [2, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61] }
     },
     {
       "id": "P06",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [2, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61] }
     },
     {
       "id": "P07",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.1, after the 2026-09-29 capability evaluation of the Opus 5 → 5.5 transition: a tier skill's capability paragraph and an open measurement on Opus 5 were never raised, and a rule whose stated reason cited an Opus 5 tier skill norm was judged fine because the citation resolved, although the session reading it runs Opus 5.5. The signal now names capability statements and source-model rationales, one line per norm of a tier skill (#78). In 0.6.2 (#89), the first source's anchor was re-pointed to `#capability-improvements`, the id the rendered guide gives that section (its own link uses it) though the raw Markdown heading reads \"Capabilities relevant to prompting\"; both fragments of the passage were re-checked word for word against the page downloaded on 2026-09-30. In 0.6.2 it also recognises a rule that names no model by finding its words in the Opus 5 guide: on the 0.6.1 suite a scope sentence copied from that guide into a path-scoped rule drew no re-test (#86).",
-      "refs": { "inbrace-tech/claude-skills": [2, 61, 78, 89, 86] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61, 78, 89, 86] }
     },
     {
       "id": "P08",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2).",
-      "refs": { "inbrace-tech/claude-skills": [2] }
+      "refs": { "inbrace-tech/claude-plugins": [2] }
     },
     {
       "id": "P09",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (agents → agents, skills, commands, memory), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.1, after the 2026-09-29 capability evaluation of the Opus 5 → 5.5 transition: a pointer to update guidance that rested on an Opus 5 claim cleared the trap. The pointer now clears it only when the guidance is not written for Opus 5, and P07 takes the other case (#78).",
-      "refs": { "inbrace-tech/claude-skills": [2, 61, 78] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61, 78] }
     },
     {
       "id": "P10",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (agents → agents, skills, commands, ci), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.1, after the 2026-09-29 capability evaluation of the Opus 5 → 5.5 transition: the trap fired only on Claude Code headless runs, and an API agent loop with no user, which stops on a text-only end of turn, fell between P10 and P12. The area gains `api-code`, handed off like every API finding (#78).",
-      "refs": { "inbrace-tech/claude-skills": [2, 61, 78] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61, 78] }
     },
     {
       "id": "P11",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (agents → agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.2 the signal names the missing instruction and the applies-when says a specific brief does not clear it: on the 0.6.1 suite an onboarding agent with a numbered brief and no explore-first line drew no change, since the passage speaks of loosely specified tasks (#86).",
-      "refs": { "inbrace-tech/claude-skills": [2, 61, 86] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61, 86] }
     },
     {
       "id": "P12",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (agents → agents, skills, commands, api-code), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [2, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61] }
     },
     {
       "id": "P13",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [2, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 61] }
     },
     {
       "id": "P14",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1).",
-      "refs": { "inbrace-tech/claude-skills": [1] }
+      "refs": { "inbrace-tech/claude-plugins": [1] }
     },
     {
       "id": "P15",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [1, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [1, 61] }
     },
     {
       "id": "P16",
       "learned": "In the audit since its first version, which flagged instructions Opus 5 and 5.5 outdated (#1). Its areas became ids of the plan's map in #61 (instructions → memory, rules, agents, skills, commands), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [1, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [1, 61] }
     },
     {
       "id": "P17",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2).",
-      "refs": { "inbrace-tech/claude-skills": [2] }
+      "refs": { "inbrace-tech/claude-plugins": [2] }
     },
     {
       "id": "P18",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2). In 0.6.1, after the 2026-09-29 capability evaluation of the Opus 5 → 5.5 transition: runs located the change at the tool declaration and wrote \"and adapt the loop\" with no line on the loop that reads the action and returns the results; the same half was missed on the Sonnet held-out. The change now records the loop as its own line (#78). Re-verified on 2026-10-27 (#151): the what's-new page scopes the 400 to Claude Models on Google Cloud (Google managed), so the applies-when line names that offering rather than Google Cloud as a whole.",
-      "refs": { "inbrace-tech/claude-skills": [2, 78], "inbrace-tech/claude-plugins": [151] }
+      "refs": { "inbrace-tech/claude-plugins": [2, 78], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P19",
       "learned": "Added when the audit was scoped to the Opus 5 → 5.5 transition and rewritten as numbered norms from the Opus 5.5 guides (#2).",
-      "refs": { "inbrace-tech/claude-skills": [2] }
+      "refs": { "inbrace-tech/claude-plugins": [2] }
     },
     {
       "id": "P20",
       "learned": "Added when the audit began reporting agents and skills still pinned to Opus 5 (#6). Its areas became ids of the plan's map in #61 (agents, skills → agents, skills, commands, settings), after a graded run missed a planted P13 in a skill that the trap's area did not cover. In 0.6.2 its signal and areas took launch commands, dispatch recipes and CI workflows, which the suite's key already counted as P20 although the areas did not name them, and it names the effort default that drops with the pin (#89). Re-verified on 2026-10-27 (#151): the frontmatter table no longer says the field inherits from the session and says `CLAUDE_CODE_EFFORT_LEVEL` overrides it, so the change says a set variable wins over the file's `effort:`.",
-      "refs": { "inbrace-tech/claude-skills": [6, 61, 89, 86], "inbrace-tech/claude-plugins": [151] }
+      "refs": { "inbrace-tech/claude-plugins": [6, 61, 89, 86], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P21",
       "learned": "Added with the effort re-derivation for files moved to Opus 5.5, since Opus 5.5's `medium` matches or beats Opus 5 at `high` (#7). Its areas took memory, rules and commands, and its signal a line that states a named agent's or skill's effort, after a user's report (#92): a rule file's routing table restated each agent's effort, and the traps stage, which reads a `sweep: no` trap only in the areas it lists, never read that file, so re-testing the agent left the row stale. The mirror line fires only where the file it names draws the trap's own finding, and its note names that `file:line`, so the cross-reference lives in the trap and no stage norm was added.",
-      "refs": { "inbrace-tech/claude-skills": [7, 92] }
+      "refs": { "inbrace-tech/claude-plugins": [7, 92] }
     },
     {
       "id": "P22",
       "learned": "Added after a run missed Opus 5 prompting that a hook delivered to Opus 5.5 by matching the model id's prefix (#27); the exact-or-longest-prefix selector fix became an applicable change in #33. Its areas became ids of the plan's map in #61 (hooks, gate-scripts → hooks, rules, settings), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [27, 33, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [27, 33, 61] }
     },
     {
       "id": "P23",
       "learned": "Added in 0.5.0 with the rows for skills preloaded through `skills:` into an agent whose pin moves (#28). In 0.6.2 it fires without a P20 finding, since an agent already on Opus 5.5 still loads the skill in full at startup; the suite's key already accepted that case (#89).",
-      "refs": { "inbrace-tech/claude-skills": [28, 89] }
+      "refs": { "inbrace-tech/claude-plugins": [28, 89] }
     },
     {
       "id": "P24",
       "learned": "Added in 0.5.0 after a capability evaluation found the Claude Code version floor outside the table (#28). Its areas became ids of the plan's map in #61 (setup-docs, memory → setup, memory), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [28, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [28, 61] }
     },
     {
       "id": "P25",
       "learned": "Added in 0.5.0 from Claude Code's automatic model fallback, which re-runs flagged requests on another model (#28). Its areas became ids of the plan's map in #61 (model-dependent, memory → model-dependent, memory, skills), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [28, 61] }
+      "refs": { "inbrace-tech/claude-plugins": [28, 61] }
     },
     {
       "id": "P26",
       "learned": "Added in 0.5.0 after a capability evaluation found a price table outside the table (#28).",
-      "refs": { "inbrace-tech/claude-skills": [28] }
+      "refs": { "inbrace-tech/claude-plugins": [28] }
     },
     {
       "id": "P27",
       "learned": "Added in 0.5.0 after a capability evaluation found a prompting-guide index outside the table (#28). In 0.6.1, after the 2026-09-29 capability evaluation of the Opus 5 → 5.5 transition: a `CLAUDE.md` paragraph naming Opus 5, its effort and its thinking setting was never its own line, since the trap was checked only in the model-dependent area. Memory and rules joined the area (#78).",
-      "refs": { "inbrace-tech/claude-skills": [28, 78] }
+      "refs": { "inbrace-tech/claude-plugins": [28, 78] }
     },
     {
       "id": "P28",
       "learned": "Added in 0.5.0 from the migration guide's note that text between tool calls arrives as thinking blocks, for parsers that keep only text blocks (#28).",
-      "refs": { "inbrace-tech/claude-skills": [28] }
+      "refs": { "inbrace-tech/claude-plugins": [28] }
     },
     {
       "id": "P29",
       "learned": "Added in 0.6.2 from the guide's note that thinking counts toward `max_tokens`, for request code sized while Opus 5 ran with thinking off (#89).",
-      "refs": { "inbrace-tech/claude-skills": [89] }
+      "refs": { "inbrace-tech/claude-plugins": [89] }
     },
     {
       "id": "P30",
       "learned": "Added in 0.6.2 from the what's-new note that a request without `effort` moves from `high` to `medium` (#89).",
-      "refs": { "inbrace-tech/claude-skills": [89] }
+      "refs": { "inbrace-tech/claude-plugins": [89] }
     }
   ]
 }

@@ -1,6 +1,6 @@
 # Haiku 4.5 → Haiku 5.5: the new transition, measured, 2026-10-07
 
-The Haiku 4.5 → Haiku 5.5 transition ([#135](https://github.com/inbrace-tech/claude-skills/issues/135), [#136](https://github.com/inbrace-tech/claude-skills/pull/136)) was measured twice before release: with the plugin's regression suite, on a seeded fixture, and with one field run on a private repository that was due to migrate its Haiku tier.
+The Haiku 4.5 → Haiku 5.5 transition ([#135](https://github.com/inbrace-tech/claude-plugins/issues/135), [#136](https://github.com/inbrace-tech/claude-plugins/pull/136)) was measured twice before release: with the plugin's regression suite, on a seeded fixture, and with one field run on a private repository that was due to migrate its Haiku tier.
 
 **In short:** the first suite pass scored 0.98 on the full audit and found a defect in the transition's own knowledge file. The defect was fixed before release, and a confirmation run scored 1.00. On the private repository, the audit found all 7 sites of a key sealed before the run and held all 3 negatives. **That field run is not blind.** The key's author also wrote the transition's traps, so the figure checks that the audit covers a real migration. It is not a capability number.
 
