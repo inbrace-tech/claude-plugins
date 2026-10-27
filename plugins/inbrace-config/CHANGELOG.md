@@ -2,6 +2,14 @@
 
 The plugin was named `claude-config` before 0.4.0.
 
+## 0.8.1
+
+### Patch Changes
+
+- Point the plugin's homepage, repository, documentation and issue links at inbrace-tech/claude-plugins, the repository's new name. ([#150](https://github.com/inbrace-tech/claude-plugins/pull/150) by [@ropdias](https://github.com/ropdias))
+
+- Transition audits: re-verify every quoted passage against today's docs, and update sampling, computer-use, 1M-context, subagent-effort, strict-tool and advisor traps that changed. ([#152](https://github.com/inbrace-tech/claude-plugins/pull/152) by [@ropdias](https://github.com/ropdias))
+
 ## 0.8.0
 
 ### Minor Changes
