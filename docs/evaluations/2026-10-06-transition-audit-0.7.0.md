@@ -6,7 +6,7 @@
 
 ## Regression suite
 
-The plugin's [`claude plugin eval` suite](../../plugins/inbrace-config/evals/README.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-plugins/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
+The plugin's [`claude plugin eval` suite](../../plugins/inbrace-model-upgrade/evals/README.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-plugins/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
 
 | Case | Opus 5 → 5.5 | Sonnet 5 → 5.5 | 0.6.1, one run ([#86](https://github.com/inbrace-tech/claude-plugins/issues/86)) |
 |---|---|---|---|
@@ -30,7 +30,7 @@ The suite's list-price cost was US$52.30, plus US$1.85 for an earlier one-run pa
 This check reuses the two held-out repositories and sealed keys of the [v3 evaluation](2026-09-29-transition-audit-v3.md). Its protocol was written down before any run. Following the frozen v3 protocol, an arm added afterwards is labelled exploratory.
 
 - **Why it is not blind.** The 0.6.1 fixes were derived from these two repositories (v3, "Defects found and fixed in 0.6.1"). 0.7.0 carries those fixes, so its score here is an upper bound. The question this check answers is narrower than v3's: did the redesign lose recall against 0.6.0 on the same targets?
-- **Controls, as in v3.** Claude Opus 5.5 at `--effort medium`, permission mode `auto`, one headless `claude -p` session per arm, hooks disabled. Each arm ran on a fresh copy of its target with no git remote, and at most two sessions ran at once. The arm ran `/inbrace-config:audit-<model>-5-5 --scope full --mode agents --stop-at-report` with 0.7.0 from the version branch, once per target.
+- **Controls, as in v3.** Claude Opus 5.5 at `--effort medium`, permission mode `auto`, one headless `claude -p` session per arm, hooks disabled. Each arm ran on a fresh copy of its target with no git remote, and at most two sessions ran at once. The arm ran `/inbrace-model-upgrade:audit-<model>-5-5 --scope full --mode agents --stop-at-report` with 0.7.0 from the version branch, once per target.
 - **Trace.** Each arm's transcripts were checked after the run. Neither read a key, a sealed file, an earlier output or a sibling copy. Neither ran a network command: the only `curl` text in the transcripts is file content of the target and the Bash tool's own description.
 - **Grading.** One headless Opus 5.5 grader per target at effort `high`, with the v3 held-out scoring rules unchanged. Each grader checked the key's hash before opening it: Sonnet `99724db8…65fe73` and Opus `5a9935d4…9e159`, the values v3 registered. Each graded the run's final list against the docs fetched fresh on 2026-10-06. Neither grader raised a key dispute. Blindness is nominal: there was one arm per target, in a recognisable format.
 

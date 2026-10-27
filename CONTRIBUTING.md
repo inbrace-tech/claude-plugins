@@ -103,7 +103,7 @@ The maintainer cuts releases:
 
    ```bash
    pnpm --silent run release:notes 0.6.0 > release-notes.md
-   gh release create inbrace-config@0.6.0 --verify-tag --title "inbrace-config 0.6.0" --notes-file release-notes.md
+   gh release create inbrace-model-upgrade@0.6.0 --verify-tag --title "inbrace-model-upgrade 0.6.0" --notes-file release-notes.md
    ```
 
    `release-notes.md` is gitignored. The version is always passed, never read from `package.json`, so running it before the version pull request merges fails instead of printing the previous release.

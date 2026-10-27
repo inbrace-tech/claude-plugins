@@ -2,4 +2,4 @@
 
 Each plugin keeps its own changelog, written by Changesets at release time:
 
-- [inbrace-config](plugins/inbrace-config/CHANGELOG.md)
+- [inbrace-model-upgrade](plugins/inbrace-model-upgrade/CHANGELOG.md)

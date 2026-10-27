@@ -19,7 +19,7 @@ describe("release-tag rules", () => {
   });
 
   it("releaseTag is Changesets' workspace form, scoped names included", () => {
-    expect(releaseTag("inbrace-config", "0.5.1")).toBe("inbrace-config@0.5.1");
+    expect(releaseTag("inbrace-model-upgrade", "0.5.1")).toBe("inbrace-model-upgrade@0.5.1");
     expect(releaseTag("@scope/p", "1.0.0")).toBe("@scope/p@1.0.0");
   });
 

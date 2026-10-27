@@ -6,7 +6,7 @@ The Haiku 4.5 → Haiku 5.5 transition ([#135](https://github.com/inbrace-tech/c
 
 ## Regression suite
 
-The plugin's [`claude plugin eval` suite](../../plugins/inbrace-config/evals/README.md), on the branch of #136, with the README's command: `--model claude-opus-5-5`, `--ablation none`, `Bash`, `Write` and `Edit` granted, no fetch tool, `--concurrency 2`. The Haiku fixture is new in this release. It has 39 positives, 9 negatives and one older-residue row, all written from the transition's own traps.
+The plugin's [`claude plugin eval` suite](../../plugins/inbrace-model-upgrade/evals/README.md), on the branch of #136, with the README's command: `--model claude-opus-5-5`, `--ablation none`, `Bash`, `Write` and `Edit` granted, no fetch tool, `--concurrency 2`. The Haiku fixture is new in this release. It has 39 positives, 9 negatives and one older-residue row, all written from the transition's own traps.
 
 | Case | First pass, 3 runs | After the fix, 1 run |
 |---|---|---|
@@ -19,13 +19,13 @@ The first pass cost US$21.16 at list price and the confirmation run US$5.25. Eve
 **What the first pass found:**
 
 - **A defect in the knowledge file, `pos-02`, missing in all three runs.** Trap P01 told the audit to record a Haiku 4.5 setting once per settings file. Every run therefore folded `CLAUDE_CODE_SUBAGENT_MODEL` into the finding on `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Two runs also claimed that an agent's pinned `model:` had no effect while that variable stayed. The model-config page says the opposite: "A per-invocation model or a definition's `model` field, including `inherit`, takes precedence." P01 now records one finding per setting and quotes that passage. The confirmation run found the line.
-- **A key row stricter than the audit's rule, `pos-18`, missing in one run.** Trap P06 records the `haiku` alias once per dispatch convention, as one line that names every file. That run recorded the convention on the agent and named the routing-table rows. The row now accepts either location, and [`KEY.md`](../../plugins/inbrace-config/evals/haiku-5-5/full-audit/KEY.md) states why.
+- **A key row stricter than the audit's rule, `pos-18`, missing in one run.** Trap P06 records the `haiku` alias once per dispatch convention, as one line that names every file. That run recorded the convention on the agent and named the routing-table rows. The row now accepts either location, and [`KEY.md`](../../plugins/inbrace-model-upgrade/evals/haiku-5-5/full-audit/KEY.md) states why.
 
 ## Field run on a private repository (exploratory, not blind)
 
 - **Target.** A private multi-agent harness, the same kind of repository as the harness of the [v3 evaluation](2026-09-29-transition-audit-v3.md), scheduled to move its Haiku tier from 4.5 to 5.5. Its maintainer's issue listed the sites measured with `git grep`.
 - **Key.** Written from that list and a survey of the repository, then sealed with its hash registered (`01593ed2…0fba36`) before any run. It holds 7 positives: a closed model-to-skill table, a price sheet and its CI-checked copy, the `haiku` alias convention, an `effort: low` set while Haiku had no effort levels, a Claude Code version floor, and the decision on a Haiku prompting skill. It also holds 3 negatives. The key's author also wrote the transition's traps, so the run is labelled exploratory.
-- **Controls, as in v3.** Claude Opus 5.5 at `--effort medium`, one headless `claude -p` session on a fresh copy of the target, hooks disabled. The plugin snapshot was the fixed commit on #136. The session ran `/inbrace-config:audit-haiku-5-5 --scope full --mode agents --stop-at-report`.
+- **Controls, as in v3.** Claude Opus 5.5 at `--effort medium`, one headless `claude -p` session on a fresh copy of the target, hooks disabled. The plugin snapshot was the fixed commit on #136. The session ran `/inbrace-model-upgrade:audit-haiku-5-5 --scope full --mode agents --stop-at-report`.
 
 | | Result |
 |---|---|

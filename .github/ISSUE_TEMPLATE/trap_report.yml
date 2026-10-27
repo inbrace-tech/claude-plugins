@@ -36,4 +36,4 @@ body:
     id: version
     attributes:
       label: Plugin version
-      description: e.g. inbrace-config 0.6.0
+      description: e.g. inbrace-model-upgrade 0.6.0

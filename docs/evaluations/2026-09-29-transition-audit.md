@@ -1,6 +1,6 @@
 # Capability evaluation: the transition-agnostic audit, 2026-09-29
 
-This evaluation asks whether `inbrace-config` 0.6.0, which reads today's docs, explores the project and then checks known traps, finds more of the right Sonnet 5 → Sonnet 5.5 changes than the table-bound 0.5.1 and than a plain Claude session given the docs, without losing precision. The protocol was written and registered before any arm ran. Every expectation is reported, including where it held only under one reading.
+This evaluation asks whether `inbrace-model-upgrade` 0.6.0, which reads today's docs, explores the project and then checks known traps, finds more of the right Sonnet 5 → Sonnet 5.5 changes than the table-bound 0.5.1 and than a plain Claude session given the docs, without losing precision. The protocol was written and registered before any arm ran. Every expectation is reported, including where it held only under one reading.
 
 **Second round.** A later round the same day ([v3](2026-09-29-transition-audit-v3.md)) compares 0.6.0 with a plain session given the documentation links and one without them, on Sonnet 5 → 5.5 and on Opus 5 → 5.5, under strict recall. The defects it found are fixed in 0.6.1.
 
@@ -18,7 +18,7 @@ Does the transition-agnostic audit (0.6.0: open discovery, then known traps) fin
 | OLD | 0.5.1 | `42d0b32` | The last table-bound version, with the per-transition pattern table |
 | PLAIN | — | — | A plain Claude Code session with the documentation links and no plugin |
 
-Both skill versions ran from a clone at their commit, with `--plugin-dir <clone>/plugins/inbrace-config`.
+Both skill versions ran from a clone at their commit, with `--plugin-dir <clone>/plugins/inbrace-model-upgrade`.
 
 ## Targets
 
@@ -36,7 +36,7 @@ Every arm used Claude Opus 5.5 at `medium` effort, the maintainer's default perm
 
 | Target | Arm | Command | Runs |
 |---|---|---|---|
-| Held-out | NEW (labels B, D) | `/inbrace-config:audit-sonnet-5-5 --scope full --mode agents --stop-at-report` | 2 |
+| Held-out | NEW (labels B, D) | `/inbrace-model-upgrade:audit-sonnet-5-5 --scope full --mode agents --stop-at-report` | 2 |
 | Held-out | OLD (labels A, E) | same command | 2 |
 | Held-out | PLAIN (label C) | the v1 baseline wording, report path adapted, no plugin | 1 |
 | Harness | NEW | same command | 1 |

@@ -15,10 +15,10 @@ Inside Claude Code, from your project root:
    /plugin marketplace add inbrace-tech/claude-plugins
    ```
 
-2. Install a plugin, for example `inbrace-config`:
+2. Install a plugin, for example `inbrace-model-upgrade`:
 
    ```text
-   /plugin install inbrace-config@inbrace
+   /plugin install inbrace-model-upgrade@inbrace
    ```
 
    The command opens a panel where you pick a scope. Choose **Install for you (user scope)**: the project scope writes `enabledPlugins` into the repository's `.claude/settings.json`, which is versioned, so the tree is dirty before the audit starts.
@@ -26,24 +26,26 @@ Inside Claude Code, from your project root:
 3. Run one of its skills by typing its command:
 
    ```text
-   /inbrace-config:audit-opus-5-5
+   /inbrace-model-upgrade:audit-opus-5-5
    ```
 
-Every plugin and its skills are listed in [Skills](#skills) below. A skill starts only when you type its command. For scopes, updates and removal, see [Install, step by step](#install-step-by-step).
+Every plugin and its skills are listed in [Skills](#skills) below. A skill starts only when you type its command. Each plugin covers one task, so install the one you need and remove it when you are done.
+
+`inbrace-model-upgrade` was named `inbrace-config` before 0.9.0. If you installed it under that name, update the marketplace: the catalog maps the old name to the new one, so Claude Code moves your setting to `inbrace-model-upgrade`. Then run `/plugin install inbrace-model-upgrade@inbrace` once to fetch it under its new name ([Migrate users with a renames map](https://code.claude.com/docs/en/plugins/host-marketplace#migrate-users-with-a-renames-map)). For scopes, updates and removal, see [Install, step by step](#install-step-by-step).
 
 ## Skills
 
-`inbrace-config` holds Inbrace's tools for the configuration of a Claude Code setup. Today it ships the model-transition audit, which you start with one of four commands: a general one that takes the two models, and one each for Opus 5 → 5.5, Sonnet 5 → 5.5 and Haiku 4.5 → 5.5.
+`inbrace-model-upgrade` is the model-transition audit, which you start with one of four commands: a general one that takes the two models, and one each for Opus 5 → 5.5, Sonnet 5 → 5.5 and Haiku 4.5 → 5.5.
 
 | Plugin | Skill | Mode | What it does |
 |---|---|---|---|
-| `inbrace-config` | `/inbrace-config:audit-model-transition <source> <target>` | Command only | Audits `CLAUDE.md`, rules, agents, skills, settings, hooks, CI, Claude API code and model-dependent code and docs for what changes when a project moves from one Claude model to another, such as `sonnet-5 sonnet-5-5`. It reads the transition's change digest — what Anthropic's docs say changed, each item with its page and a quoted passage, shipped with the plugin and dated — and explores the project guided by a map of where model-dependent behaviour lives, recording a finding only with the doc passage behind it; then it applies each of the transition's known traps — the edge cases earlier audits learned — adding what discovery missed. It reaches no network: the maintainers compare every passage with the docs weekly and release a new version when one changes. It lists and measures the files first, then shows the plan with its estimated token cost, counted from measured runs — the audit's fixed load (about 75–85k tokens of context with its skills and the transition's knowledge file), the digest, the files, the findings and the verifier agents — and its cost in dollars (measured runs: US$2.16 on a tiny project, US$7.90 on a small one) and asks before reading any file, asks again before each later costly stage, can run one `batch-auditor` agent per area in parallel, has every raw finding checked by the `finding-verifier` agent against the file and the digest, summarizes in the chat what it would change and why, asks what to apply with a recommendation, and applies only what you approve. Arguments can pre-answer the plan gate and stop at the report — `--scope`, `--mode`, `--stop-at-report` — so it can run headless; no argument applies changes. It runs for the transitions it ships knowledge for, Opus 5 → 5.5, Sonnet 5 → 5.5 and Haiku 4.5 → 5.5, and stops for any other, listing them. |
-| `inbrace-config` | `/inbrace-config:audit-opus-5-5` | Command only | The same audit for Claude Opus 5 → Opus 5.5, with its known traps. It proposes Opus 5.5 at `medium` effort in the project settings, shared or local as you choose. Same arguments, without the models. |
-| `inbrace-config` | `/inbrace-config:audit-sonnet-5-5` | Command only | The same audit for Claude Sonnet 5 → Sonnet 5.5, with its known traps. It proposes the model `claude-sonnet-5-5` where the project runs Sonnet 5 and never writes an effort level, leaving effort to a re-test against the guide's starting points. Same arguments, without the models. |
-| `inbrace-config` | `/inbrace-config:audit-haiku-5-5` | Command only | The same audit for Claude Haiku 4.5 → Haiku 5.5, with its known traps; there is no Haiku 5. It proposes the model `claude-haiku-5-5` where the project runs Haiku 4.5 and never writes an effort level, since effort is new on the Haiku line and is left to a re-test, and it checks what the move changes beyond prompts: thinking always on, about 30% more tokens for the same text, and two rate cards split at a 100,000-token prompt. Same arguments, without the models. |
-| `inbrace-config` | `transition-audit`, `transition-audit-plan`, `-discover`, `-traps`, `-report`, `-apply` | Stage | The audit's orchestrator and stages. They run only when one of the commands above starts them: each is out of the `/` menu, and stops at once when the audit's run file does not name it as the next stage. |
+| `inbrace-model-upgrade` | `/inbrace-model-upgrade:audit-model-transition <source> <target>` | Command only | Audits `CLAUDE.md`, rules, agents, skills, settings, hooks, CI, Claude API code and model-dependent code and docs for what changes when a project moves from one Claude model to another, such as `sonnet-5 sonnet-5-5`. It reads the transition's change digest — what Anthropic's docs say changed, each item with its page and a quoted passage, shipped with the plugin and dated — and explores the project guided by a map of where model-dependent behaviour lives, recording a finding only with the doc passage behind it; then it applies each of the transition's known traps — the edge cases earlier audits learned — adding what discovery missed. It reaches no network: the maintainers compare every passage with the docs weekly and release a new version when one changes. It lists and measures the files first, then shows the plan with its estimated token cost, counted from measured runs — the audit's fixed load (about 75–85k tokens of context with its skills and the transition's knowledge file), the digest, the files, the findings and the verifier agents — and its cost in dollars (measured runs: US$2.16 on a tiny project, US$7.90 on a small one) and asks before reading any file, asks again before each later costly stage, can run one `batch-auditor` agent per area in parallel, has every raw finding checked by the `finding-verifier` agent against the file and the digest, summarizes in the chat what it would change and why, asks what to apply with a recommendation, and applies only what you approve. Arguments can pre-answer the plan gate and stop at the report — `--scope`, `--mode`, `--stop-at-report` — so it can run headless; no argument applies changes. It runs for the transitions it ships knowledge for, Opus 5 → 5.5, Sonnet 5 → 5.5 and Haiku 4.5 → 5.5, and stops for any other, listing them. |
+| `inbrace-model-upgrade` | `/inbrace-model-upgrade:audit-opus-5-5` | Command only | The same audit for Claude Opus 5 → Opus 5.5, with its known traps. It proposes Opus 5.5 at `medium` effort in the project settings, shared or local as you choose. Same arguments, without the models. |
+| `inbrace-model-upgrade` | `/inbrace-model-upgrade:audit-sonnet-5-5` | Command only | The same audit for Claude Sonnet 5 → Sonnet 5.5, with its known traps. It proposes the model `claude-sonnet-5-5` where the project runs Sonnet 5 and never writes an effort level, leaving effort to a re-test against the guide's starting points. Same arguments, without the models. |
+| `inbrace-model-upgrade` | `/inbrace-model-upgrade:audit-haiku-5-5` | Command only | The same audit for Claude Haiku 4.5 → Haiku 5.5, with its known traps; there is no Haiku 5. It proposes the model `claude-haiku-5-5` where the project runs Haiku 4.5 and never writes an effort level, since effort is new on the Haiku line and is left to a re-test, and it checks what the move changes beyond prompts: thinking always on, about 30% more tokens for the same text, and two rate cards split at a 100,000-token prompt. Same arguments, without the models. |
+| `inbrace-model-upgrade` | `transition-audit`, `transition-audit-plan`, `-discover`, `-traps`, `-report`, `-apply` | Stage | The audit's orchestrator and stages. They run only when one of the commands above starts them: each is out of the `/` menu, and stops at once when the audit's run file does not name it as the next stage. |
 
-`inbrace-config` also ships two agents, which only the audit starts: `batch-auditor`, one per area of the setup when you choose to run an audit in parallel agents, and `finding-verifier`, which checks the raw findings at the end of every run and returns the final list. Both read files and return text; neither can edit or write anything.
+`inbrace-model-upgrade` also ships two agents, which only the audit starts: `batch-auditor`, one per area of the setup when you choose to run an audit in parallel agents, and `finding-verifier`, which checks the raw findings at the end of every run and returns the final list. Both read files and return text; neither can edit or write anything.
 
 ## Install, step by step
 
@@ -55,20 +57,20 @@ Start `claude` in any project, then add this marketplace and install the plugin:
 
 ```text
 /plugin marketplace add inbrace-tech/claude-plugins
-/plugin install inbrace-config@inbrace
+/plugin install inbrace-model-upgrade@inbrace
 ```
 
 The install command opens a panel with the plugin's details, where you pick a scope (step 3). On Claude Code v2.1.275 or later, one command does both:
 
 ```text
-/plugin install inbrace-config --marketplace inbrace-tech/claude-plugins
+/plugin install inbrace-model-upgrade --marketplace inbrace-tech/claude-plugins
 ```
 
 ### 2. Or install from your terminal
 
 ```bash
 claude plugin marketplace add inbrace-tech/claude-plugins
-claude plugin install inbrace-config@inbrace --scope user
+claude plugin install inbrace-model-upgrade@inbrace --scope user
 ```
 
 `--scope` takes `user`, `project` or `local`, and defaults to `user`.
@@ -86,10 +88,10 @@ For the audit, `user` is the right choice — **Install for you (user scope)** i
 ### 4. Run the audit
 
 ```text
-/inbrace-config:audit-model-transition <source> <target> [path]
-/inbrace-config:audit-opus-5-5 [path]
-/inbrace-config:audit-sonnet-5-5 [path]
-/inbrace-config:audit-haiku-5-5 [path]
+/inbrace-model-upgrade:audit-model-transition <source> <target> [path]
+/inbrace-model-upgrade:audit-opus-5-5 [path]
+/inbrace-model-upgrade:audit-sonnet-5-5 [path]
+/inbrace-model-upgrade:audit-haiku-5-5 [path]
 ```
 
 Name the transition your project is making, as `sonnet-5 sonnet-5-5`, or use the command for it. The audit needs no network: what Anthropic's docs say about the transition ships with the plugin, dated, and the plan and the report give that date, so update the plugin before you audit. When a run learns something the audit does not know yet, the close invites you to contribute it: it drafts a generic issue for this repository, with nothing from your project, shows it to you, and gives you a link to GitHub's issue form with the draft filled in. It sends nothing itself.
@@ -99,13 +101,13 @@ Each run keeps its files in its own folder, `.model-audits/<target>-<date>/`, un
 Arguments can answer the plan's questions in advance, in any order: `--scope full|reduced|quick`, `--mode session|agents`, and `--stop-at-report`, which ends the run with the report. The plan is still shown, an option the plan would not offer stops the run with the reason, and no argument applies changes:
 
 ```text
-/inbrace-config:audit-sonnet-5-5 --scope full --mode agents --stop-at-report
+/inbrace-model-upgrade:audit-sonnet-5-5 --scope full --mode agents --stop-at-report
 ```
 
 The same command runs headless, where nobody can answer a question; there the run always ends at the report, and without `--scope` (and `--mode`, when the plan has several batches) it stops at the plan:
 
 ```bash
-claude -p "/inbrace-config:audit-sonnet-5-5 --scope full --mode agents"
+claude -p "/inbrace-model-upgrade:audit-sonnet-5-5 --scope full --mode agents"
 ```
 
 Without a path it audits the current project. It starts only from this typed command: asking for an audit in plain words does not start it.
@@ -123,26 +125,26 @@ An existing install receives a new release only when the plugin's version change
 ```
 
 ```bash
-claude plugin update inbrace-config@inbrace
+claude plugin update inbrace-model-upgrade@inbrace
 ```
 
 Or open the plugin on the **Installed** tab in `/plugin` and select **Update now**. The running session keeps the version it loaded: run `/reload-plugins`, or start a new session, to use the new one.
 
 Auto-update is off by default for a third-party marketplace like this one. Turn it on per marketplace: in `/plugin`, go to **Marketplaces**, select `inbrace` and select **Enable auto-update**.
 
-Each release is a [GitHub Release](https://github.com/inbrace-tech/claude-plugins/releases) with its notes, tagged `inbrace-config@x.y.z`. The plugin's full history is in [`plugins/inbrace-config/CHANGELOG.md`](plugins/inbrace-config/CHANGELOG.md).
+Each release is a [GitHub Release](https://github.com/inbrace-tech/claude-plugins/releases) with its notes, tagged `inbrace-model-upgrade@x.y.z`. The plugin's full history is in [`plugins/inbrace-model-upgrade/CHANGELOG.md`](plugins/inbrace-model-upgrade/CHANGELOG.md).
 
 Checked against [Keep plugins updated](https://code.claude.com/docs/en/plugins/install#keep-plugins-updated) and [Host and maintain a marketplace › Keep users up to date](https://code.claude.com/docs/en/plugins/host-marketplace#keep-users-up-to-date).
 
 ### 7. Turn off or remove
 
 ```text
-/plugin disable inbrace-config@inbrace
-/plugin enable inbrace-config@inbrace
+/plugin disable inbrace-model-upgrade@inbrace
+/plugin enable inbrace-model-upgrade@inbrace
 ```
 
 ```bash
-claude plugin uninstall inbrace-config@inbrace
+claude plugin uninstall inbrace-model-upgrade@inbrace
 claude plugin marketplace remove inbrace
 ```
 
@@ -154,7 +156,7 @@ Test a branch, or a local copy for one session:
 
 ```bash
 claude plugin marketplace add inbrace-tech/claude-plugins#<branch>
-claude --plugin-dir ./plugins/inbrace-config
+claude --plugin-dir ./plugins/inbrace-model-upgrade
 ```
 
 ## How this relates to Anthropic's `claude-api` skill
@@ -165,7 +167,7 @@ Claude Code ships Anthropic's [`claude-api` skill](https://platform.claude.com/d
 |---|---|
 | `/claude-api migrate <scope> to claude-opus-5-5`, `to claude-sonnet-5-5` or `to claude-haiku-5-5` | Code that calls the Claude API: model IDs, request parameters that now return errors, SDK syntax in each language |
 | `/claude-api prompt-audit` | Dated prompt patterns across model generations, independent of one transition |
-| `/inbrace-config:audit-model-transition`, `audit-opus-5-5`, `audit-sonnet-5-5`, `audit-haiku-5-5` | What Claude Code reads as instructions (`CLAUDE.md`, rules, agents, skills, settings, hooks) and the project's model-dependent code and docs, checked against the transition's guides, as recorded in the plugin, and its known traps |
+| `/inbrace-model-upgrade:audit-model-transition`, `audit-opus-5-5`, `audit-sonnet-5-5`, `audit-haiku-5-5` | What Claude Code reads as instructions (`CLAUDE.md`, rules, agents, skills, settings, hooks) and the project's model-dependent code and docs, checked against the transition's guides, as recorded in the plugin, and its known traps |
 
 The audits never edit API code. Each lists what it finds there and gives you the `/claude-api migrate` command to run, and points to `/claude-api prompt-audit` for instructions older than the model it moves from.
 
@@ -181,7 +183,7 @@ Installing a plugin does not load its skills into every conversation. A skill's 
 
 The Skills table above says which mode each skill uses. One-shot or side-effecting skills, like the audit, are command only. The audit's stages are skills Claude invokes, so they can hand the run to each other and resume after a compaction; that is why their one-line descriptions stay in context while the plugin is enabled, about 220 tokens for the six. Each one stops at once unless an audit you started names it as the next stage.
 
-Agents are different: while a plugin is enabled, the one-line description of each agent it ships stays in context, so Claude knows the agent exists. `inbrace-config` ships two, `batch-auditor` and `finding-verifier`, each with a single short sentence.
+Agents are different: while a plugin is enabled, the one-line description of each agent it ships stays in context, so Claude knows the agent exists. `inbrace-model-upgrade` ships two, `batch-auditor` and `finding-verifier`, each with a single short sentence.
 
 ## Without the plugin system
 
@@ -190,13 +192,13 @@ Each skill is a plain folder with a `SKILL.md`, following the [Agent Skills](htt
 ```bash
 # for you, in every project
 for s in audit-model-transition audit-opus-5-5 audit-sonnet-5-5 audit-haiku-5-5 transition-audit transition-audit-plan transition-audit-discover transition-audit-traps transition-audit-report transition-audit-apply; do
-  cp -r plugins/inbrace-config/skills/$s ~/.claude/skills/
+  cp -r plugins/inbrace-model-upgrade/skills/$s ~/.claude/skills/
 done
-cp plugins/inbrace-config/agents/batch-auditor.md plugins/inbrace-config/agents/finding-verifier.md ~/.claude/agents/
+cp plugins/inbrace-model-upgrade/agents/batch-auditor.md plugins/inbrace-model-upgrade/agents/finding-verifier.md ~/.claude/agents/
 # for one repository, shared with your team: the same, into .claude/skills/ and .claude/agents/
 ```
 
-The audit is the nine skill folders together — the commands, the orchestrator with its `transitions/` knowledge files and change digests, and the stages — and runs in your session. Copy the agent files too only to use agents: `batch-auditor.md` for the parallel mode and `finding-verifier.md` for the final check; without them the audit offers only the in-session mode and checks its findings itself. Outside the plugin the skills and agents are called without the `inbrace-config:` prefix, and Claude Code asks once before each stage, since the pre-approval in each skill names the prefixed skill.
+The audit is the nine skill folders together — the commands, the orchestrator with its `transitions/` knowledge files and change digests, and the stages — and runs in your session. Copy the agent files too only to use agents: `batch-auditor.md` for the parallel mode and `finding-verifier.md` for the final check; without them the audit offers only the in-session mode and checks its findings itself. Outside the plugin the skills and agents are called without the `inbrace-model-upgrade:` prefix, and Claude Code asks once before each stage, since the pre-approval in each skill names the prefixed skill.
 
 A copied skill does not receive updates. Installing through the marketplace does.
 

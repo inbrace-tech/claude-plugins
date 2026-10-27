@@ -1,6 +1,6 @@
 # Capability evaluation v3: the transition audit against plain sessions, 2026-09-29
 
-This is the second round of the [2026-09-29 capability evaluation](2026-09-29-transition-audit.md). The first round compared `inbrace-config` 0.6.0 with the table-bound 0.5.1 and a plain session given the docs, on the Sonnet 5 → Sonnet 5.5 transition. This round drops the older skill version and asks a narrower question on two transitions, Sonnet 5 → 5.5 and Opus 5 → 5.5. Its protocol was written and frozen before any new arm ran, and every expectation is reported, including the one that failed.
+This is the second round of the [2026-09-29 capability evaluation](2026-09-29-transition-audit.md). The first round compared `inbrace-model-upgrade` 0.6.0 with the table-bound 0.5.1 and a plain session given the docs, on the Sonnet 5 → Sonnet 5.5 transition. This round drops the older skill version and asks a narrower question on two transitions, Sonnet 5 → 5.5 and Opus 5 → 5.5. Its protocol was written and frozen before any new arm ran, and every expectation is reported, including the one that failed.
 
 **Capability was measured on 0.6.0.** The defects this round found are fixed in 0.6.1, which was not measured on the held-out repositories: the fixes were derived from them, so re-running there would no longer be a blind test. See [Defects found and fixed in 0.6.1](#defects-found-and-fixed-in-061).
 
@@ -17,7 +17,7 @@ Every compared arm ran under the same conditions:
 - **Model and effort.** Claude Opus 5.5 (`--model claude-opus-5-5`) at `--effort medium`, the maintainer's default permission mode (`auto`), one headless `claude -p` session, with its output JSON kept.
 - **A fresh copy per arm.** Each arm ran on its own new copy of the target, with the git remote removed so no arm could reach another's copy. At most two sessions ran at once.
 - **Clean prompts.** No prompt carried a GitHub issue, an earlier evaluation's output, a refinement note or a sibling copy. Each transcript was traced after the run for reads of the answer keys or other runs' outputs; a run that read one would have been void. None did.
-- **The skill arm** ran 0.6.0 from a clone at `3b27194`, with `--plugin-dir <clone>/plugins/inbrace-config` and `/inbrace-config:audit-<sonnet|opus>-5-5 --scope full --mode agents --stop-at-report`. Plain arms had no plugin.
+- **The skill arm** ran 0.6.0 from a clone at `3b27194`, with `--plugin-dir <clone>/plugins/inbrace-model-upgrade` and `/inbrace-model-upgrade:audit-<sonnet|opus>-5-5 --scope full --mode agents --stop-at-report`. Plain arms had no plugin.
 - **Plain with links** used the first round's baseline wording, with three documentation links: the target's prompting guide, its migration guide and Claude Code's model configuration page.
 - **Plain without links** used the same wording with the sentence that gives the links removed. Nothing else changed.
 - **Hooks.** Disabled with `--settings '{"disableAllHooks": true}'` on the held-out repositories, whose hooks are planted audit material. Active on the harness for every compared arm, as in the earlier harness runs (a declared exception).
