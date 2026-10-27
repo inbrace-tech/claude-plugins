@@ -23,7 +23,7 @@ claude plugin eval . --scaffold --ablation none --model claude-opus-5-5 --no-pub
   --allow-tools Bash Write Edit
 ```
 
-- No fetch tool is granted: the audit reaches no network ([transition-audit N22](../skills/transition-audit/SKILL.md)), and the full-audit case fails a run that calls WebFetch or runs `curl`, `wget` or `gh`.
+- Only `Bash`, `Write` and `Edit` are granted, and every shell command runs under the eval sandbox's rules ([What a run can access](https://code.claude.com/docs/en/plugin-evals#security)); the audit itself needs nothing beyond the project ([transition-audit N22](../skills/transition-audit/SKILL.md)).
 
 - `--scaffold` runs each case's `scaffold.sh`, which copies the fixture into the run's empty workspace ([Seed the workspace](https://code.claude.com/docs/en/plugin-evals#add-setup-or-history-with-case-yaml)). It runs as you, so pass it only for this suite.
 - `--ablation none` skips the no-plugin baseline: without the plugin, the audit's slash command does not exist, so a baseline would measure nothing. The comparison with a plain Claude session is the one in `docs/evaluations/`.
@@ -39,7 +39,7 @@ Each transition has the same three cases:
 
 | Case | Prompt | What passes |
 |---|---|---|
-| `<transition>-full-audit` | `/inbrace-config:audit-<model>-5-5 --scope full --mode agents --stop-at-report` on the seeded fixture | One grader per answer-key row (see `full-audit/KEY.md`), plus: the run reached the report stage, wrote `report.md`, created `.model-audits/.gitignore`, called `Write` or `Edit` on no file outside `.model-audits/`, and reached no network |
+| `<transition>-full-audit` | `/inbrace-config:audit-<model>-5-5 --scope full --mode agents --stop-at-report` on the seeded fixture | One grader per answer-key row (see `full-audit/KEY.md`), plus: the run reached the report stage, wrote `report.md`, created `.model-audits/.gitignore`, and called `Write` or `Edit` on no file outside `.model-audits/` |
 | `<transition>-headless-without-scope` | The same command without `--scope` and `--mode` | It stops at the plan, runs no later stage, calls `Write` or `Edit` on no file outside `.model-audits/`, and names the arguments that would have reached the report |
 | `<transition>-bad-argument` | `--scope everything` | It stops before the plan, writes nothing, and shows the usage line naming the token at fault |
 
