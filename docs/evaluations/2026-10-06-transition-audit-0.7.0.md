@@ -1,14 +1,14 @@
 # 0.7.0: the audit that reaches no network, re-measured, 2026-10-06
 
-0.7.0 changes where the audit's knowledge comes from. It no longer downloads Anthropic's documentation at run time. It reads the change digest and known traps that ship with each transition, checked against the docs as of 2026-10-06 ([#105](https://github.com/inbrace-tech/claude-skills/issues/105)). Discovery's input changed, so [#110](https://github.com/inbrace-tech/claude-skills/issues/110) asked for both measurements to be re-run before the release: the plugin's regression suite, and the capability check on the held-out repositories.
+0.7.0 changes where the audit's knowledge comes from. It no longer downloads Anthropic's documentation at run time. It reads the change digest and known traps that ship with each transition, checked against the docs as of 2026-10-06 ([#105](https://github.com/inbrace-tech/claude-plugins/issues/105)). Discovery's input changed, so [#110](https://github.com/inbrace-tech/claude-plugins/issues/110) asked for both measurements to be re-run before the release: the plugin's regression suite, and the capability check on the held-out repositories.
 
 **In short:** the redesign lost nothing measurable. On the regression suite, 0.7.0 scored 0.95 (Opus 5 → 5.5) and 0.99 (Sonnet 5 → 5.5) on the full audit, mean of three runs, against 0.956 and 0.956 for 0.6.1 in one run each. On the v3 held-out repositories it found 33 of 35 Sonnet items and 31 of 34 Opus items, against 31.0 and 29.5 for 0.6.0. Every run was cheaper than 0.6.0's. **The held-out figures are not blind.** The 0.6.1 fixes were derived from these repositories, so the figures are an upper bound for 0.7.0, not proof of a gain over 0.6.0.
 
 ## Regression suite
 
-The plugin's [`claude plugin eval` suite](../../plugins/inbrace-config/evals/README.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-skills/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
+The plugin's [`claude plugin eval` suite](../../plugins/inbrace-config/evals/README.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-plugins/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
 
-| Case | Opus 5 → 5.5 | Sonnet 5 → 5.5 | 0.6.1, one run ([#86](https://github.com/inbrace-tech/claude-skills/issues/86)) |
+| Case | Opus 5 → 5.5 | Sonnet 5 → 5.5 | 0.6.1, one run ([#86](https://github.com/inbrace-tech/claude-plugins/issues/86)) |
 |---|---|---|---|
 | `bad-argument` | 1.00 (3/3) | 1.00 (3/3) | 1.00 / 1.00 |
 | `headless-without-scope` | 1.00 (3/3) | 1.00, one run (see below) | 1.00 / 1.00 |
@@ -18,7 +18,7 @@ The suite's list-price cost was US$52.30, plus US$1.85 for an earlier one-run pa
 
 **What the full audit missed.** Each line below was missed in at least two of the three runs:
 
-- **Opus `neg-12`, a false positive in all three runs.** The audit proposed a change on the negative at `SKILL.md:12`. [#86](https://github.com/inbrace-tech/claude-skills/issues/86) already reported this line, as a re-test that never came out with the expected status.
+- **Opus `neg-12`, a false positive in all three runs.** The audit proposed a change on the negative at `SKILL.md:12`. [#86](https://github.com/inbrace-tech/claude-plugins/issues/86) already reported this line, as a re-test that never came out with the expected status.
 - **Opus `pos-44`, `pos-52`, `pos-57`, each missing in two of three runs.** All three are model-id changes in Claude API code (`anthropic.ts:6`, `client.py:9`, `bedrock-portal.py:10`). The held-out check shows the same pattern (K09 below): the audit points to `/claude-api migrate` for the file without writing the new id itself.
 - **Opus `pos-07`, missing in two of three runs.** The `change` on `nightly-review.yml:22`.
 - **Sonnet `pos-21`, missing in all three runs.** The `change` on `history.ts:39`. #86 reported it on 0.6.1.

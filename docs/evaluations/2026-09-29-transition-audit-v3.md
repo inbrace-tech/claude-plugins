@@ -122,15 +122,15 @@ The graders' misses and false positives on the Opus targets were traced to their
 
 | # | Defect in 0.6.0 | Fixed in 0.6.1 |
 |---|---|---|
-| 1 | Effort was judged from the auditor's own user-level settings, which neither other developers nor CI receive, instead of from what the repository ships. | [#77](https://github.com/inbrace-tech/claude-skills/issues/77) |
-| 2 | The verifier downgraded a requirement the docs state — a minimum version, a migration-checklist step — to a re-test on a project-local reason. | [#77](https://github.com/inbrace-tech/claude-skills/issues/77) |
-| 3 | Older-residue lines with nothing to change, some with no passage behind them, entered the final list. | [#77](https://github.com/inbrace-tech/claude-skills/issues/77) |
-| 4 | A computer-use tool change was located at the tool declaration only, never at the agent loop that handles it. | [#78](https://github.com/inbrace-tech/claude-skills/issues/78) |
-| 5 | Guidance for unattended runs was applied to Claude Code headless runs but not to agent loops in Claude API code. | [#78](https://github.com/inbrace-tech/claude-skills/issues/78) |
-| 6 | A rule justified by the source model's guidance passed because its citation still resolved. | [#78](https://github.com/inbrace-tech/claude-skills/issues/78) |
-| 7 | A tier skill's capability claims about the source model were never re-derived for the target. | [#78](https://github.com/inbrace-tech/claude-skills/issues/78) |
-| 8 | The check for model notes left out memory and rules files, where such notes also live. | [#78](https://github.com/inbrace-tech/claude-skills/issues/78) |
+| 1 | Effort was judged from the auditor's own user-level settings, which neither other developers nor CI receive, instead of from what the repository ships. | [#77](https://github.com/inbrace-tech/claude-plugins/issues/77) |
+| 2 | The verifier downgraded a requirement the docs state — a minimum version, a migration-checklist step — to a re-test on a project-local reason. | [#77](https://github.com/inbrace-tech/claude-plugins/issues/77) |
+| 3 | Older-residue lines with nothing to change, some with no passage behind them, entered the final list. | [#77](https://github.com/inbrace-tech/claude-plugins/issues/77) |
+| 4 | A computer-use tool change was located at the tool declaration only, never at the agent loop that handles it. | [#78](https://github.com/inbrace-tech/claude-plugins/issues/78) |
+| 5 | Guidance for unattended runs was applied to Claude Code headless runs but not to agent loops in Claude API code. | [#78](https://github.com/inbrace-tech/claude-plugins/issues/78) |
+| 6 | A rule justified by the source model's guidance passed because its citation still resolved. | [#78](https://github.com/inbrace-tech/claude-plugins/issues/78) |
+| 7 | A tier skill's capability claims about the source model were never re-derived for the target. | [#78](https://github.com/inbrace-tech/claude-plugins/issues/78) |
+| 8 | The check for model notes left out memory and rules files, where such notes also live. | [#78](https://github.com/inbrace-tech/claude-plugins/issues/78) |
 
-Where the same trap exists for Sonnet 5 → 5.5, the fix covers it too. 0.6.1 also carries a ninth fix, found by the plugin's own eval suite rather than by this evaluation: without `AskUserQuestion`, the audit now closes as a headless run naming the arguments that unblock it ([#79](https://github.com/inbrace-tech/claude-skills/issues/79)).
+Where the same trap exists for Sonnet 5 → 5.5, the fix covers it too. 0.6.1 also carries a ninth fix, found by the plugin's own eval suite rather than by this evaluation: without `AskUserQuestion`, the audit now closes as a headless run naming the arguments that unblock it ([#79](https://github.com/inbrace-tech/claude-plugins/issues/79)).
 
 Run-to-run variance, the remaining observation, is tracked in #67 and was not changed.

@@ -4,67 +4,67 @@
     {
       "id": "N01",
       "where": "Before anything",
-      "refs": { "docs": ["https://code.claude.com/docs/en/skills#control-who-invokes-a-skill", "https://code.claude.com/docs/en/permission-modes"], "inbrace-tech/claude-skills": [34, 40, 57] },
+      "refs": { "docs": ["https://code.claude.com/docs/en/skills#control-who-invokes-a-skill", "https://code.claude.com/docs/en/permission-modes"], "inbrace-tech/claude-plugins": [34, 40, 57] },
       "what": "A stage skill is model-invocable so the orchestrator can start it, which also lets Claude invoke it on an unrelated task; the run-file guard makes that cost one skill load. Written for the transition-agnostic audit (#34, #40). In 0.6.0 the run's files moved from `.claude/audits/` to their own folder under `.model-audits/`: Claude Code protects all of `.claude/` from writes in every permission mode but bypass, and allow rules do not pre-approve them, so a headless smoke run in `acceptEdits` stopped before the plan and every user outside auto mode got a prompt per write (#57)."
     },
     {
       "id": "N02",
       "where": "Before anything",
-      "refs": { "docs": ["https://code.claude.com/docs/en/skills#skill-content-lifecycle"], "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "docs": ["https://code.claude.com/docs/en/skills#skill-content-lifecycle"], "inbrace-tech/claude-plugins": [34, 40] },
       "what": "After compaction the orchestrator, the oldest skill of the run, is the first to be dropped; re-invoking it restores the run's standing rules. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N03",
       "where": "Before anything",
-      "refs": { "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40] },
       "what": "The traps are the part of the knowledge file only this stage needs. A quick sweep skips discovery, which normally writes the brief, so this stage writes it from the discover skill's own text rather than a second copy that could drift. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N04",
       "where": "Check each trap",
-      "refs": { "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40] },
       "what": "The learned edge cases — prefix-matched delivery, inherited effort, the version floor, alias resolution per provider — are applied after discovery as a checklist, so the table guides the search without bounding it (#34). Derived from `audit-sonnet-5-5` `N10` and `audit-opus-5-5` `N10` at inbrace-config@0.5.0; history in git. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N05",
       "where": "Check each trap",
-      "refs": { "inbrace-tech/claude-skills": [34, 40, 86] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40, 86] },
       "what": "A finding discovery already recorded should appear once, under the id of the trap that explains it, while keeping the trace of where it came from. Written for the transition-agnostic audit (#34, #40). In 0.6.2 (#86), on the 0.6.1 suite a dispatch recipe drew its P02 finding but not the P03 re-test on the same line, and one function's two P21 constructs came out as one: the norm merged by file and construct, against the orchestrator's line format, whose unit is one line per id per `file:line`. A discovery line now takes a trap's id only when it carries that trap's id or none, and another trap on the same construct keeps its own line. No findings file was kept, so the cause is read from the norm's text, not observed."
     },
     {
       "id": "N06",
       "where": "Check each trap",
-      "refs": { "inbrace-tech/claude-skills": [34, 40, 61, 87] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40, 61, 87] },
       "what": "Discovery can miss a known edge case; looking for each trap where it can occur adds it back. Lexical traps are found by search, the others by reading their areas, within what the user approved. Written for the transition-agnostic audit (#34, #40). After grading a full-scope run of `main` (a289710) on a seeded project against its sealed answer key — recall 96.6% primary, 89.8% strict, precision 100% — a planted P13 in a skill was missed: the trap's area named only agents and the stage read only those files. Areas are now ids of the plan's map, each trap lists every area its \"applies when\" covers, check-norms rejects an unknown id, and the clean line names the areas read (#61). In 0.6.2 the lines of a trap `<unquoted>` lists are taken from `unquoted.md` rather than read around each match ([N12], #87)."
     },
     {
       "id": "N07",
       "where": "Check each trap",
-      "refs": { "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40] },
       "what": "Discovery reasons from today's docs alone and can propose changing what a trap learned should be kept or only re-tested; the trap corrects it, with the trace. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N08",
       "where": "Check each trap",
-      "refs": { "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40] },
       "what": "Some traps rest on advice the guides only offer, or on a system card; shown apart, they do not compete with the changes the docs state. Derived from `audit-sonnet-5-5` `N60` and `audit-opus-5-5` `N60` at inbrace-config@0.5.0; history in git. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N09",
       "where": "Check each trap",
-      "refs": { "docs": ["https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill"], "inbrace-tech/claude-skills": [34, 40] },
+      "refs": { "docs": ["https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill"], "inbrace-tech/claude-plugins": [34, 40] },
       "what": "A trap's kind decides how its finding is presented: a re-test lists without an edit, a hand-off goes to Anthropic's claude-api skill, and a setting's file is the user's choice. Written for the transition-agnostic audit (#34, #40)."
     },
     {
       "id": "N10",
       "where": "Close the stage",
-      "refs": { "inbrace-tech/claude-skills": [34, 40, 61] },
+      "refs": { "inbrace-tech/claude-plugins": [34, 40, 61] },
       "what": "The report must show that every trap the per-transition audits checked was checked again, so nothing they caught goes unchecked. Written for the transition-agnostic audit (#34, #40). After grading a full-scope run of `main` (a289710) on a seeded project against its sealed answer key — recall 96.6% primary, 89.8% strict, precision 100% — a planted P13 in a skill was missed: the trap's area named only agents and the stage read only those files. Areas are now ids of the plan's map, each trap lists every area its \"applies when\" covers, check-norms rejects an unknown id, and the clean line names the areas read (#61)."
     },
     {
       "id": "N12",
       "where": "Check each trap",
-      "refs": { "docs": ["https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#safeguard-refusals", "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#safeguard-refusals"], "inbrace-tech/claude-skills": [87] },
+      "refs": { "docs": ["https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#safeguard-refusals", "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#safeguard-refusals"], "inbrace-tech/claude-plugins": [87] },
       "what": "In 0.6.2 (#87), a live session-mode run on the Sonnet fixture stopped mid-discovery with `stop_reason: \"refusal\"`, category `reasoning_extraction`, after reading the lines the reasoning-in-the-reply trap (Opus P04, Sonnet P09) exists to find; the guides say such requests can be declined, and Claude Code's automatic fallback covers other categories only, so the run simply stopped. A sweep reads the lines around each match, which for this trap is the line that stops the run; the plan already lists its lines by number, so the stage takes them from `unquoted.md` and judges \"applies when\" from the neighbouring lines."
     }
   ]
