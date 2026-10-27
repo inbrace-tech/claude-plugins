@@ -4,7 +4,7 @@ title: Sonnet 5 → Sonnet 5.5
 source: { name: Claude Sonnet 5, id: claude-sonnet-5, alias: sonnet }
 target: { name: Claude Sonnet 5.5, id: claude-sonnet-5-5, bedrock: anthropic.claude-sonnet-5-5, alias: sonnet }
 claude-code-floor: v2.1.284
-verified: 2026-10-06
+verified: 2026-10-27
 ---
 
 # Sonnet 5 → Sonnet 5.5
@@ -82,19 +82,22 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - area: settings
 - signal: `model` or `env.ANTHROPIC_MODEL` set to `claude-sonnet-5` or its provider ID, or `env.ANTHROPIC_DEFAULT_SONNET_MODEL` set to Sonnet 5 while `model` is `sonnet`, `sonnet[1m]` or `opusplan`, in the project, local or managed settings
 - applies when: a settings file names Sonnet 5 as the session model; resolve aliases as the Claude Code docs do: `sonnet` is Sonnet 5.5 on the Anthropic API, but Sonnet 4.6 on Claude Platform on AWS and Sonnet 4.5 on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry, which fall outside this transition, and `ANTHROPIC_DEFAULT_SONNET_MODEL`, when set, decides what `sonnet` means; `default` resolves to Opus 5.5, so a project that sets no model gets no finding; record it once per project, on the file that names Sonnet 5; on a provider other than the Anthropic API, `ANTHROPIC_DEFAULT_SONNET_MODEL` left at Sonnet 5 beside a `model` already on Sonnet 5.5 is the fallback the docs describe, not a finding, and a file that says so is the record
-- change: Set `"model": "claude-sonnet-5-5"` — `anthropic.claude-sonnet-5-5` on Amazon Bedrock — in the file the user picks per the report stage's settings question, keeping a `[1m]` suffix where the current value carries one, and say in one line that on the Anthropic API Sonnet 5.5 always runs with the 1M window. Where Sonnet 5 comes from `ANTHROPIC_DEFAULT_SONNET_MODEL`, propose removing it on the Anthropic API, and on the other providers keep it and set `model` instead, since there it supplies the model Sonnet 5.5's cyber-flagged requests re-run on. Write no effort level: P03 covers effort. Explain, from the user's settings read as context, what the user's settings do today: in Claude Code, Sonnet 5.5 starts at `medium` unless a level is set for it, and a top-level `effortLevel` in `~/.claude/settings.json` does not count for Opus 5.5 and the models released after it; Sonnet 5.5 requires Claude Code v2.1.284 or later. Type setting. Medium confidence when it comes through `ANTHROPIC_DEFAULT_SONNET_MODEL`.
+- change: Set `"model": "claude-sonnet-5-5"` — `anthropic.claude-sonnet-5-5` on Amazon Bedrock — in the file the user picks per the report stage's settings question, keeping a `[1m]` suffix where the current value carries one, and say in one line that Sonnet 5.5 runs with the 1M window by default, with no `[1m]` suffix needed, unless `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` is set. Where Sonnet 5 comes from `ANTHROPIC_DEFAULT_SONNET_MODEL`, propose removing it on the Anthropic API, and on the other providers keep it and set `model` instead, since there it supplies the model Sonnet 5.5's cyber-flagged requests re-run on. Write no effort level: P03 covers effort. Explain, from the user's settings read as context, what the user's settings do today: in Claude Code, Sonnet 5.5 starts at `medium` unless a level is set for it, and a top-level `effortLevel` in `~/.claude/settings.json` does not count for Opus 5.5 and the models released after it; Sonnet 5.5 requires Claude Code v2.1.284 or later. Type setting. Medium confidence when it comes through `ANTHROPIC_DEFAULT_SONNET_MODEL`.
 - confidence: high
 - sweep: yes
 - context: user-settings
-- source: https://code.claude.com/docs/en/model-config#sonnet-5-5-and-sonnet-5-context-window
-  passage: "On the Anthropic API, Sonnet 5.5 and Sonnet 5 always run with the 1M context window."
-  verified: 2026-10-06
+- source: https://code.claude.com/docs/en/model-config#extended-context
+  passage: "Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later run with the 1M window by default, with no `[1m]` suffix needed."
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/model-config#enable-fallback-on-bedrock-agent-platform-and-foundry
   passage: "From Sonnet 5.5, cybersecurity-flagged requests re-run on the model you set in `ANTHROPIC_DEFAULT_SONNET_MODEL`"
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/model-config#adjust-effort-level
-  passage: "except that Opus 5.5 and Sonnet 5.5 default to `medium` … Opus 5.5 and models released after it start at their own default until you choose a level for them"
-  verified: 2026-10-06
+  passage: "Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to `medium` … Opus 5.5 and models released after it start at their own default until you choose a level for them"
+  verified: 2026-10-27
+- source: https://code.claude.com/docs/en/model-config#turn-off-1m-context
+  passage: "To keep sessions at a 200K window, set `CLAUDE_CODE_DISABLE_1M_CONTEXT=1`"
+  verified: 2026-10-27
 
 ### P02 — Agent, skill or launch still pinned to Sonnet 5
 
@@ -107,8 +110,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - sweep: yes
 - context: user-settings
 - source: https://code.claude.com/docs/en/model-config#adjust-effort-level
-  passage: "The model's default effort: `high` on every model that supports effort, except that Opus 5.5 and Sonnet 5.5 default to `medium`"
-  verified: 2026-10-06
+  passage: "The model's default effort: `high` on every model that supports effort, except that Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to `medium`"
+  verified: 2026-10-27
 
 ### P03 — Effort level carried over from Sonnet 5
 
@@ -137,11 +140,11 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: high
 - sweep: yes
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models … a saved `alwaysThinkingEnabled: false` or `MAX_THINKING_TOKENS=0` has no effect there"
-  verified: 2026-10-06
+  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, Haiku 5.5, or the Fable models … a saved `alwaysThinkingEnabled: false` or `MAX_THINKING_TOKENS=0` has no effect there"
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "which turns thinking off on the Anthropic API except on Opus 5.5, Sonnet 5.5, and Fable models"
-  verified: 2026-10-06
+  passage: "which turns thinking off on the Anthropic API except on Opus 5.5, Sonnet 5.5, Haiku 5.5, and Fable models"
+  verified: 2026-10-27
 
 ### P05 — Sonnet 5 prompting delivered to Sonnet 5.5 by prefix
 
@@ -161,7 +164,7 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - area: memory, rules, agents, skills, commands, hooks
 - signal: `sonnet` as a model choice in instruction text or dispatch code — `model: sonnet` in frontmatter, a `model: "sonnet"` argument to an Agent or workflow call, a brief template or hook text, or a rule such as "use `sonnet` for bounded work"
 - applies when: the project runs Claude Code on the Anthropic API; on Claude Platform on AWS `sonnet` is Sonnet 4.6 and on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry Sonnet 4.5, outside this transition, unless `ANTHROPIC_DEFAULT_SONNET_MODEL` names Sonnet 5 or 5.5; record it once per dispatch convention, one line naming every file it covers
-- change: Re-test. Since Claude Code v2.1.284 `sonnet` resolves to Sonnet 5.5 on the Anthropic API, so these dispatches already run on Sonnet 5.5 with no edit, while explicit `claude-sonnet-5` pins stay on Sonnet 5; a subagent dispatched this way runs at the session's effort unless it sets its own, since a subagent's `effort` defaults to inheriting from the session. Decide deliberately: accept the move and re-test the work it dispatches, or pin `claude-sonnet-5` where the project must stay, and note beside the convention that `sonnet` is Sonnet 4.6 on Claude Platform on AWS and Sonnet 4.5 on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry. List it under "Re-test only, no edit".
+- change: Re-test. Since Claude Code v2.1.284 `sonnet` resolves to Sonnet 5.5 on the Anthropic API, so these dispatches already run on Sonnet 5.5 with no edit, while explicit `claude-sonnet-5` pins stay on Sonnet 5; a subagent dispatched this way runs at the session's effort unless its `effort` field or the dispatch's `effort` parameter sets one, and `CLAUDE_CODE_EFFORT_LEVEL` overrides both. Decide deliberately: accept the move and re-test the work it dispatches, or pin `claude-sonnet-5` where the project must stay, and note beside the convention that `sonnet` is Sonnet 4.6 on Claude Platform on AWS and Sonnet 4.5 on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry. List it under "Re-test only, no edit".
 - confidence: high
 - sweep: yes
 - context: user-settings
@@ -169,11 +172,14 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
   passage: "`sonnet` resolves to Sonnet 5.5 on the Anthropic API"
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields
-  passage: "Effort level when this subagent is active. Overrides the session effort level. Default: inherits from session."
-  verified: 2026-10-06
+  passage: "Effort level when this subagent is active. Overrides the session effort level, but not the `CLAUDE_CODE_EFFORT_LEVEL` environment variable."
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/model-config#model-aliases
-  passage: "The version that the `opus` and `sonnet` aliases resolve to depends on the provider"
-  verified: 2026-10-06
+  passage: "The `opus`, `sonnet`, and `haiku` aliases resolve to the newest version on the Anthropic API and to an earlier version on some other providers"
+  verified: 2026-10-27
+- source: https://code.claude.com/docs/en/sub-agents#choose-an-effort-level
+  passage: "it can also pass an `effort` parameter for that invocation. The parameter overrides the `effort` field … The `CLAUDE_CODE_EFFORT_LEVEL` environment variable takes precedence over both."
+  verified: 2026-10-27
 
 ### P07 — Sonnet 5 behavior claim a Sonnet 5.5 source contradicts
 
@@ -233,8 +239,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#user-facing-progress-updates
-  passage: "Between tool calls, Claude Sonnet 5.5 writes user-facing notes … remove older instructions such as "hold all findings for the final response""
-  verified: 2026-10-06
+  passage: "Between tool calls, Claude Sonnet 5.5 writes user-facing notes … remove older instructions such as "hold all findings for the final response.""
+  verified: 2026-10-27
 
 ### P11 — Language that discourages tool use
 
@@ -288,8 +294,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
   passage: "On agentic coding tasks at `low` and `medium` effort, the model sometimes checks in before the work is done … sessions at those levels run longer and cost more"
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/model-config#adjust-effort-level
-  passage: "except that Opus 5.5 and Sonnet 5.5 default to `medium`"
-  verified: 2026-10-06
+  passage: "except that Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to `medium`"
+  verified: 2026-10-27
 
 ### P15 — Unrequested additions in a project that wants minimal changes
 
@@ -406,14 +412,14 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 
 - kind: hand-off
 - area: api-code
-- signal: `tool_choice` of type `any` or `tool`; structured outputs or `strict: true` in Amazon Bedrock code
+- signal: `tool_choice` of type `any` or `tool`
 - applies when: API code, token-counting calls included
-- change: Hand off per the API hand-off rule. Forced tool use returns a 400; the fix is `auto` with `strict: true` and a prompt line saying when to call the tool, or structured outputs; on Amazon Bedrock, where structured outputs and strict tool use are not available for Sonnet 5.5, send `auto` without `strict` and validate the tool input in code.
+- change: Hand off per the API hand-off rule. Forced tool use returns a 400; the fix is `auto` with `strict: true` and a prompt line saying when to call the tool, or structured outputs.
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#forced-tool-use
-  passage: "Claude Sonnet 5.5 rejects both with a 400 error, including on the token counting endpoint … On Amazon Bedrock, structured outputs, which include strict tool use, aren't available for Claude Sonnet 5.5."
-  verified: 2026-10-06
+  passage: "Claude Sonnet 5.5 rejects both with a 400 error, including on the token counting endpoint … Send `tool_choice: {"type": "auto"}`, and mark the tool `strict: true`"
+  verified: 2026-10-27
 
 ### P24 — History edited between requests
 
@@ -493,14 +499,14 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 
 - kind: hand-off
 - area: api-code
-- signal: an advisor tool whose advisor is Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 5 or Sonnet 4.6 with a Sonnet 5.5 executor, or code that reads the advice text
+- signal: an advisor tool whose advisor is Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 5, Sonnet 4.6 or Haiku 5.5 with a Sonnet 5.5 executor, or code that reads the advice text
 - applies when: API code
 - change: Hand off per the API hand-off rule. Those advisors return a 400; pair Sonnet 5.5 with Opus 5, Opus 5.5, Sonnet 5.5, Fable 5, Fable 5.1, Mythos 5 or Mythos 5.1, whose advice arrives encrypted.
 - confidence: high
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#advisor-tool
-  passage: "Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 advisors return a 400 error."
-  verified: 2026-10-06
+  passage: "Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, and Claude Haiku 5.5 advisors return a 400 error."
+  verified: 2026-10-27
 
 ### P30 — Refusals not handled
 
@@ -658,8 +664,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
   passage: "Then re-evaluate model-specific prompt instructions against Prompting Claude Sonnet 5.5."
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models."
-  verified: 2026-10-06
+  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, Haiku 5.5, or the Fable models."
+  verified: 2026-10-27
 
 ### P42 — Transcript or output parser that reads only text blocks
 

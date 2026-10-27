@@ -1,6 +1,6 @@
 ---
 transition: haiku-4-5-to-5-5
-verified: 2026-10-07
+verified: 2026-10-27
 ---
 
 # Haiku 4.5 → Haiku 5.5: change digest
@@ -71,8 +71,8 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 - change: The guide's starting points are `medium` for most work, agentic coding included, `low` for chat and simple high-volume requests, `high` for knowledge work and strict instruction following.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking
-  passage: "`medium` is the default on the Claude API and in Claude Code. Start here for most work, including agentic coding."
-  verified: 2026-10-07
+  passage: "`medium` is the default. Start here for most work, including agentic coding."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking
   passage: "`high` suits knowledge work, longer agent tasks, and strict instruction following."
   verified: 2026-10-07
@@ -109,8 +109,8 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 - change: Thinking blocks come back with an empty text and a signature, where Haiku 4.5 returned summaries; `display: "summarized"` restores them.
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#configure-thinking
-  passage: "By default, Claude Haiku 5.5 returns each `thinking` block with an empty `thinking` field and only a `signature`, where Claude Haiku 4.5 returned summarized thinking."
-  verified: 2026-10-07
+  passage: "By default, Claude Haiku 5.5 returns each `thinking` block with an empty `thinking` field and only a `signature`, where Claude Haiku 4.5 returns summarized thinking."
+  verified: 2026-10-27
 
 ### C14 — Manual thinking budgets are rejected
 
@@ -128,10 +128,13 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 ### C16 — Sampling parameters are rejected
 
-- change: Non-default `temperature` or `top_p`, any `top_k`, or both `temperature` and `top_p` together return a 400 error.
+- change: Omit `temperature`, `top_p` and `top_k`: on API version `2026-10-21` any value returns a 400 error, and on earlier versions a non-default one does.
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#remove-sampling-parameters
-  passage: "On Claude Haiku 5.5, omit all three and use prompting to guide the model's behavior instead."
-  verified: 2026-10-07
+  passage: "On Claude Haiku 5.5, omit `temperature`, `top_p`, and `top_k` and use prompting to guide the model's behavior instead."
+  verified: 2026-10-27
+- source: https://platform.claude.com/docs/en/about-claude/model-deprecations#api-parameter-deprecations
+  passage: "Returns a 400 error. Earlier API versions return it when set to a non-default value on Claude 4.7 and later models"
+  verified: 2026-10-27
 
 ### C17 — Assistant prefill is rejected
 
@@ -140,12 +143,15 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
   passage: "Claude Haiku 5.5 rejects it with a 400 error, even with thinking turned off."
   verified: 2026-10-07
 
-### C18 — Computer use needs the toolset on the Claude API and Google Cloud
+### C18 — Computer use drops `computer_20250124`
 
-- change: There `computer_20250124` returns a 400 error and `computer_toolset_20260801` replaces it, with agent-loop changes; the browser use tool is new.
+- change: `computer_20250124` returns a 400 error; on the Claude API and Google-managed Google Cloud `computer_toolset_20260801` replaces it, with agent-loop changes, and on Amazon Bedrock `computer_20251124`; the browser use tool is new.
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset
   passage: "a request that declares `computer_20250124` returns a 400 error."
-  verified: 2026-10-07
+  verified: 2026-10-27
+- source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset
+  passage: "On Amazon Bedrock, Claude Haiku 5.5 doesn't accept `computer_20250124` either"
+  verified: 2026-10-27
 
 ### C19 — Editing earlier turns invalidates thinking blocks
 
@@ -165,8 +171,8 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 - change: A newer tokenizer raises token counts for the same text, so limits, budgets and cost estimates need recounting on Haiku 5.5.
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5#same-text-counts-as-more-tokens
-  passage: "the same input text produces approximately 30% more tokens on Claude Haiku 5.5 than on Claude Haiku 4.5."
-  verified: 2026-10-07
+  passage: "the same input text produces approximately 30 percent more tokens on Claude Haiku 5.5 than on Claude Haiku 4.5."
+  verified: 2026-10-27
 
 ### C22 — A larger window and output
 
@@ -179,8 +185,8 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 - change: Haiku 5.5 costs USD 0.10 / 0.50 per million tokens up to 100,000 prompt tokens and USD 0.50 / 2.50 above, against USD 1 / 5 for Haiku 4.5 at any length.
 - source: https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing
-  passage: "Claude Haiku 5.5 is priced by prompt length: a prompt of over 100,000 tokens pays higher prices."
-  verified: 2026-10-07
+  passage: "Claude Haiku 5.5 is priced by prompt length: a request whose prompt is over 100,000 tokens pays higher prices."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/overview
   passage: "$0.10 / MTok for prompts up to 100,000 tokens; $0.50 / MTok for prompts over 100,000 tokens"
   verified: 2026-10-07
@@ -251,8 +257,8 @@ What changes from Claude Haiku 4.5 to Claude Haiku 5.5 that can bear on a Claude
 
 - change: Replies sometimes carry reasoning-like text, more often with thinking off or at `low`; adaptive thinking at `medium` addresses it.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#keep-reasoning-out-of-user-facing-text
-  passage: "This happens more often with thinking off or at `low` effort."
-  verified: 2026-10-07
+  passage: "This occurs more often with thinking off or at `low` effort."
+  verified: 2026-10-27
 
 ### C33 — Empty replies at `xhigh`
 
@@ -292,12 +298,10 @@ Ids and instructions written for a Haiku model older than Haiku 4.5, already ret
 
 - residue: `claude-3-5-haiku-20241022` and `claude-3-haiku-20240307` were retired on the Claude API, each with Haiku 4.5 as its recommended replacement.
 - source: https://platform.claude.com/docs/en/about-claude/model-deprecations#2025-12-19-claude-haiku-3-5-model
-  passage: "On December 19, 2025, Anthropic notified developers using Claude Haiku 3.5 model of its upcoming retirement on the Claude API."
-  verified: 2026-10-07
+  passage: "On December 19, 2025, Anthropic notified developers using Claude Haiku 3.5 of its upcoming retirement on the Claude API."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/about-claude/model-deprecations#2026-02-19-claude-haiku-3-model
-  passage: "On February 19, 2026, Anthropic notified developers using Claude Haiku 3 model of its upcoming retirement on the Claude API."
-  verified: 2026-10-07
+  passage: "On February 19, 2026, Anthropic notified developers using Claude Haiku 3 of its upcoming retirement on the Claude API."
+  verified: 2026-10-27
 
 </older_residue>
-</content>
-</invoke>
