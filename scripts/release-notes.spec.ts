@@ -26,7 +26,7 @@ describe("release-notes, end to end", () => {
     expect(result.status, `release-notes failed:\n${result.stderr}`).toBe(0);
     expect(result.stdout).toMatch(/^- New skill, `\/inbrace-config:audit-sonnet-5-5`/);
     expect(result.stdout).not.toMatch(/## 0\.4\.7/);
-    expect(result.stdout).toMatch(/Full changelog: https:\/\/github\.com\/inbrace-tech\/claude-skills\/blob\/inbrace-config@0\.5\.0\/plugins\/inbrace-config\/CHANGELOG\.md\n$/);
+    expect(result.stdout).toMatch(/Full changelog: https:\/\/github\.com\/inbrace-tech\/claude-plugins\/blob\/inbrace-config@0\.5\.0\/plugins\/inbrace-config\/CHANGELOG\.md\n$/);
   });
 
   it("reads the version as v0.5.0 and inbrace-config@0.5.0 too", () => {

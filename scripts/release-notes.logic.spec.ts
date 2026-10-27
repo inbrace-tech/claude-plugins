@@ -16,9 +16,9 @@ describe("release-notes rules", () => {
 
   it("releaseNotes appends the link to the full changelog at the tag", () => {
     expect(releaseNotes("p", CHANGELOG, "0.6.0")).toEqual({
-      notes: "### Minor Changes\n\n- Add a skill.\n\nFull changelog: https://github.com/inbrace-tech/claude-skills/blob/p@0.6.0/plugins/p/CHANGELOG.md\n",
+      notes: "### Minor Changes\n\n- Add a skill.\n\nFull changelog: https://github.com/inbrace-tech/claude-plugins/blob/p@0.6.0/plugins/p/CHANGELOG.md\n",
     });
-    expect(changelogUrl("p", "1.0.0")).toBe("https://github.com/inbrace-tech/claude-skills/blob/p@1.0.0/plugins/p/CHANGELOG.md");
+    expect(changelogUrl("p", "1.0.0")).toBe("https://github.com/inbrace-tech/claude-plugins/blob/p@1.0.0/plugins/p/CHANGELOG.md");
   });
 
   it("releaseNotes fails on a missing section and an empty one", () => {

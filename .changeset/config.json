@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "inbrace-tech/claude-skills", "template": "\n\n- {summary} ({pull} by {authors})" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "inbrace-tech/claude-plugins", "template": "\n\n- {summary} ({pull} by {authors})" }],
   "commit": false,
   "fixed": [],
   "linked": [],

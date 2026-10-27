@@ -35,7 +35,7 @@ metadata:
 ## Learning loop, only with the user's consent
 
 - [N11] Offer the learning loop at the close only when the run audited files and learned something the knowledge file lacks — a `D` line the verifier kept as `change` or `re-test` — and never in a headless run or after a cancelled plan.
-- [N12] Make the offer an invitation, before any drafting: say, in the user's language, "This run found something the audit's knowledge doesn't cover yet. Improvements to this skill are very welcome, and each one helps everyone who uses it.", then ask "Would you like to contribute what this run learned? I can draft an issue for the public inbrace-tech/claude-skills repository in a moment — anonymised, with no path, name or text from your project — and I'll show it to you. I send nothing: you submit it yourself, if you choose to." with the options of `<consent>`:
+- [N12] Make the offer an invitation, before any drafting: say, in the user's language, "This run found something the audit's knowledge doesn't cover yet. Improvements to this skill are very welcome, and each one helps everyone who uses it.", then ask "Would you like to contribute what this run learned? I can draft an issue for the public inbrace-tech/claude-plugins repository in a moment — anonymised, with no path, name or text from your project — and I'll show it to you. I send nothing: you submit it yourself, if you choose to." with the options of `<consent>`:
 
 <consent>
 
@@ -48,7 +48,7 @@ metadata:
 
 - [N13] After a yes, build the draft only from the transition's slug and the plugin version, trap and change ids, doc URLs with the passages the change digest or the knowledge file records, the area names of the plan's `<map>`, and one generic sentence per item in that map's words, such as "a hook script that selects instruction text by matching a model id prefix"; never write into it a path, file name, line number, identifier, quoted text, code, repository, remote, branch or person's name from the audited project.
 - [N14] Before showing the draft, search it, ignoring case, for every path segment and file name of the inventory, with and without extension, the root directory's name, each `git remote -v` URL with its owner and repository, the current branch, `git config user.name` and `user.email`, and every quoted text of the final list — leaving out words shorter than four letters and the map's own words; on a match, rewrite the draft once and search again, and on a second match show nothing, and say the draft could not be written without details of the project.
-- [N15] Show the draft in full in the chat before anything else, then give the link `https://github.com/inbrace-tech/claude-skills/issues/new?template=trap_report.yml` with `title`, `transition`, `trap`, `where`, `passage` and `version` URL-encoded, dropping `passage` and saying so when the link would pass about 8,000 characters, and send nothing: the user opens the link and submits the form, or does not.
+- [N15] Show the draft in full in the chat before anything else, then give the link `https://github.com/inbrace-tech/claude-plugins/issues/new?template=trap_report.yml` with `title`, `transition`, `trap`, `where`, `passage` and `version` URL-encoded, dropping `passage` and saying so when the link would pass about 8,000 characters, and send nothing: the user opens the link and submits the form, or does not.
 
 ## Sources
 
