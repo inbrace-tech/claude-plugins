@@ -4,7 +4,7 @@ title: Haiku 4.5 → Haiku 5.5
 source: { name: Claude Haiku 4.5, id: claude-haiku-4-5, dated: claude-haiku-4-5-20251001, bedrock: anthropic.claude-haiku-4-5, google-cloud: claude-haiku-4-5@20251001, alias: haiku }
 target: { name: Claude Haiku 5.5, id: claude-haiku-5-5, bedrock: anthropic.claude-haiku-5-5, alias: haiku }
 claude-code-floor: v2.1.293
-verified: 2026-10-07
+verified: 2026-10-27
 ---
 
 # Haiku 4.5 → Haiku 5.5
@@ -227,8 +227,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
   passage: "When you give Claude Haiku 5.5 a search tool, also give it today's date. In Anthropic's testing, this grounded the model's answers in recent search results."
   verified: 2026-10-07
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#accurate-search-results
-  passage: "This happens most at `low` effort and with long system prompts. To fix it, add this text directly after the date"
-  verified: 2026-10-07
+  passage: "This occurs most at `low` effort and with long system prompts. To fix it, add this text directly after the date"
+  verified: 2026-10-27
 
 ### P10 — Blanket instruction to always search
 
@@ -310,8 +310,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: low
 - sweep: no
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#keep-reasoning-out-of-user-facing-text
-  passage: "This happens more often with thinking off or at `low` effort. If you see this behavior, switch to adaptive thinking and `medium` effort."
-  verified: 2026-10-07
+  passage: "This occurs more often with thinking off or at `low` effort. If you see this behavior, switch to adaptive thinking and `medium` effort."
+  verified: 2026-10-27
 
 ### P16 — No Claude Code version floor for Haiku 5.5
 
@@ -336,8 +336,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: medium
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#recount-tokens
-  passage: "the same input text produces approximately 30% more tokens on Claude Haiku 5.5 than on Claude Haiku 4.5. The exact increase depends on the content."
-  verified: 2026-10-07
+  passage: "the same input text produces approximately 30 percent more tokens on Claude Haiku 5.5 than on Claude Haiku 4.5. The exact increase depends on the content."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#recount-tokens
   passage: "Count your prompts with `model` set to `claude-haiku-5-5` rather than reusing counts measured on Claude Haiku 4.5."
   verified: 2026-10-07
@@ -352,8 +352,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: high
 - sweep: no
 - source: https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing
-  passage: "Claude Haiku 5.5 is priced by prompt length: a prompt of over 100,000 tokens pays higher prices."
-  verified: 2026-10-07
+  passage: "Claude Haiku 5.5 is priced by prompt length: a request whose prompt is over 100,000 tokens pays higher prices."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/overview
   passage: "$0.10 / MTok for prompts up to 100,000 tokens; $0.50 / MTok for prompts over 100,000 tokens"
   verified: 2026-10-07
@@ -387,8 +387,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: low
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5#responses-can-begin-with-thinking-blocks
-  passage: "Adaptive thinking is on by default, so a response can begin with one or more `thinking` blocks even when the request doesn't mention thinking."
-  verified: 2026-10-07
+  passage: "Adaptive thinking is on by default, so a response can start with one or more `thinking` blocks even when the request doesn't mention thinking."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5#responses-can-begin-with-thinking-blocks
   basis: inference: how Claude Code records those blocks in a session transcript is not documented.
 
@@ -439,12 +439,15 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - area: api-code
 - signal: `temperature`, `top_p` or `top_k` in a request to Haiku
 - applies when: API code
-- change: Hand off per the API hand-off rule. Remove all three: any `temperature` other than `1`, any `top_p` other than `0.99`, any `top_k`, and both `temperature` and `top_p` together return a 400; `temperature=0` on a classification route is the common case, replaced by structured outputs or an enum-valued tool.
+- change: Hand off per the API hand-off rule. Remove all three: on API version `2026-10-21` any value returns a 400, and on earlier versions a non-default value does; `temperature=0` on a classification route is the common case, replaced by structured outputs or an enum-valued tool.
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#remove-sampling-parameters
-  passage: "Any other `temperature` or `top_p` value returns a 400 error, including a `top_p` of `1`. So does any `top_k` value, and so does a request that includes both `temperature` and `top_p`."
-  verified: 2026-10-07
+  passage: "On Claude Haiku 5.5, omit `temperature`, `top_p`, and `top_k` and use prompting to guide the model's behavior instead."
+  verified: 2026-10-27
+- source: https://platform.claude.com/docs/en/about-claude/model-deprecations#api-parameter-deprecations
+  passage: "Returns a 400 error. Earlier API versions return it when set to a non-default value on Claude 4.7 and later models"
+  verified: 2026-10-27
 
 ### P25 — Assistant prefill
 
@@ -464,16 +467,19 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - kind: hand-off
 - area: api-code
 - signal: `computer_20250124`, the `computer-use-2025-01-24` beta header, or the `fine-grained-tool-streaming-2025-05-14` header beside a toolset
-- applies when: API code on the Claude API or Google Cloud
-- change: Hand off per the API hand-off rule. There `computer_20250124` returns a 400: replace it with `computer_toolset_20260801`, drop the beta header, and remove the streaming header, which returns a 400 beside a toolset. Record a second line on the agent loop that runs the tool's calls — where it reads the action from `input.action`, handles only the first `tool_use` block, or returns results without `toolset_name` — since the toolset changes the loop as well as the declaration.
+- applies when: API code on the Claude API, Claude Models on Google Cloud (Google managed) or Amazon Bedrock
+- change: Hand off per the API hand-off rule. There `computer_20250124` returns a 400: replace it with `computer_toolset_20260801`, drop the beta header, and remove the streaming header, which returns a 400 beside a toolset; on Amazon Bedrock, replace it with `computer_20251124` and the `computer-use-2025-11-24` beta header instead. Where the toolset replaces it, record a second line on the agent loop that runs the tool's calls — where it reads the action from `input.action`, handles only the first `tool_use` block, or returns results without `toolset_name` — since the toolset changes the loop as well as the declaration.
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset
-  passage: "On the Claude API and Google Cloud, Claude Haiku 5.5 supports computer use only through the `computer_toolset_20260801` toolset, and a request that declares `computer_20250124` returns a 400 error."
-  verified: 2026-10-07
+  passage: "On the Claude API and Claude Models on Google Cloud (Google managed), Claude Haiku 5.5 supports computer use only through the `computer_toolset_20260801` toolset, and a request that declares `computer_20250124` returns a 400 error."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset
   passage: "dispatch on each member `tool_use` block's `name` and `toolset_name` rather than on `input.action`, handle every such block in a turn, and echo `toolset_name` on results"
   verified: 2026-10-07
+- source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#computer-use-toolset
+  passage: "On Amazon Bedrock, Claude Haiku 5.5 doesn't accept `computer_20250124` either; use the `computer_20251124` tool version with the `computer-use-2025-11-24` beta header."
+  verified: 2026-10-27
 
 ### P27 — History edited between requests
 
@@ -498,8 +504,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: medium
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account
-  passage: "When another account sends one of these blocks, the API drops the block before the model sees it, and the request succeeds without that reasoning."
-  verified: 2026-10-07
+  passage: "When another account sends one of these blocks, the API drops the block before the model receives it, and the request succeeds without that reasoning."
+  verified: 2026-10-27
 
 ### P29 — First content block read as the answer, or a small `max_tokens`
 
@@ -611,8 +617,8 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
 - confidence: high
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide#configure-thinking
-  passage: "By default, Claude Haiku 5.5 returns each `thinking` block with an empty `thinking` field and only a `signature`, where Claude Haiku 4.5 returned summarized thinking."
-  verified: 2026-10-07
+  passage: "By default, Claude Haiku 5.5 returns each `thinking` block with an empty `thinking` field and only a `signature`, where Claude Haiku 4.5 returns summarized thinking."
+  verified: 2026-10-27
 
 ### P37 — Empty replies at `xhigh` in multi-turn chat
 
@@ -670,5 +676,3 @@ None for this transition: Haiku 5.5's safety classifiers have no `reasoning_extr
   verified: 2026-10-07
 
 </traps>
-</content>
-</invoke>

@@ -118,8 +118,8 @@
     },
     {
       "id": "P24",
-      "learned": "Written in 0.8.0 for the Haiku 4.5 → 5.5 audit (#135) from the Haiku 5.5 migration guide, what's new and prompting guide and the Claude Code documentation, read on 2026-10-07; new for this transition: sampling parameters were older residue on the Sonnet transition, while Haiku 4.5 still accepts them.",
-      "refs": { "inbrace-tech/claude-skills": [135] }
+      "learned": "Written in 0.8.0 for the Haiku 4.5 → 5.5 audit (#135) from the Haiku 5.5 migration guide, what's new and prompting guide and the Claude Code documentation, read on 2026-10-07; new for this transition: sampling parameters were older residue on the Sonnet transition, while Haiku 4.5 still accepts them. Re-verified on 2026-10-27 (#151): the migration guide no longer lists which values return a 400, and the model deprecations page says API version 2026-10-21 rejects any sampling parameter while earlier versions reject a non-default one, so the change states both instead of the old value list.",
+      "refs": { "inbrace-tech/claude-skills": [135], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P25",
@@ -128,8 +128,8 @@
     },
     {
       "id": "P26",
-      "learned": "Written in 0.8.0 for the Haiku 4.5 → 5.5 audit (#135) from the Haiku 5.5 migration guide, what's new and prompting guide and the Claude Code documentation, read on 2026-10-07; modelled on the Sonnet transition's P28, with `computer_20250124`, the tool Haiku 4.5 used.",
-      "refs": { "inbrace-tech/claude-skills": [135] }
+      "learned": "Written in 0.8.0 for the Haiku 4.5 → 5.5 audit (#135) from the Haiku 5.5 migration guide, what's new and prompting guide and the Claude Code documentation, read on 2026-10-07; modelled on the Sonnet transition's P28, with `computer_20250124`, the tool Haiku 4.5 used. Re-verified on 2026-10-27 (#151): the migration guide says Amazon Bedrock also rejects `computer_20250124` and takes `computer_20251124` with its beta header, so the trap covers Bedrock code and Google Cloud is named as its Google-managed offering.",
+      "refs": { "inbrace-tech/claude-skills": [135], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P27",

@@ -4,7 +4,7 @@ title: Opus 5 → Opus 5.5
 source: { name: Claude Opus 5, id: claude-opus-5, alias: opus }
 target: { name: Claude Opus 5.5, id: claude-opus-5-5, alias: opus }
 claude-code-floor: v2.1.280
-verified: 2026-10-06
+verified: 2026-10-27
 ---
 
 # Opus 5 → Opus 5.5
@@ -76,7 +76,7 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - area: settings
 - signal: the project, local and managed settings leave `model` or a top-level `effortLevel` unset
 - applies when: the project runs on Opus 5 or Opus 5.5, and no project, local or managed settings file already sets an effort level with a model that resolves to Opus 5.5; the user's `~/.claude/settings.json` never counts as already set, whether it saves a level under `modelSettings["claude-opus-5-5"]`, where `/effort` and the `/model` picker save it, or a top-level `effortLevel`, which does not apply to Opus 5.5, since the project's other developers and its CI never get that file; resolve aliases as the Claude Code docs do: `opus`, `opus[1m]` and `default` are Opus 5.5 on the Anthropic API, Claude Platform on AWS, Amazon Bedrock and Google Cloud, but other models on Microsoft Foundry, and `ANTHROPIC_DEFAULT_OPUS_MODEL`, when set, decides what `opus` means; record it once per project, on `.claude/settings.json`
-- change: Add `"model": "claude-opus-5-5"` and `"effortLevel": "medium"` to the project settings, in the file the user picks per the report stage's settings question; where the user's current model — in the user's, project or local settings, or this session's — carries the `[1m]` suffix, such as `opus[1m]`, propose `"model": "claude-opus-5-5[1m]"` instead, and say in one line that on the Anthropic API Opus 4.7 and later already run with the 1M window without the suffix, which keeps that context choice on other providers and plans. This is the skill's recommendation, not the guide's rule: Opus 5.5's `medium` matches or beats Opus 5 at `high` and costs less, and a top-level `effortLevel` in project settings applies to every model. Explain, from the user's settings read as context, what the user's own settings do today: a top-level `effortLevel` in `~/.claude/settings.json` does not count for Opus 5.5 while a level saved under `modelSettings["claude-opus-5-5"]` does, on this machine only. Type setting. Medium confidence unless the project sets neither `model` nor `effortLevel` and the user relies on a top-level `effortLevel` in `~/.claude/settings.json`, which Opus 5.5 ignores.
+- change: Add `"model": "claude-opus-5-5"` and `"effortLevel": "medium"` to the project settings, in the file the user picks per the report stage's settings question; where the user's current model — in the user's, project or local settings, or this session's — carries the `[1m]` suffix, such as `opus[1m]`, propose `"model": "claude-opus-5-5[1m]"` instead, and say in one line that Opus 4.7 and later run with the 1M window by default without the suffix, on the Anthropic API and on Amazon Bedrock, Google Cloud's Agent Platform and Microsoft Foundry, unless `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` is set. This is the skill's recommendation, not the guide's rule: Opus 5.5's `medium` matches or beats Opus 5 at `high` and costs less, and a top-level `effortLevel` in project settings applies to every model. Explain, from the user's settings read as context, what the user's own settings do today: a top-level `effortLevel` in `~/.claude/settings.json` does not count for Opus 5.5 while a level saved under `modelSettings["claude-opus-5-5"]` does, on this machine only. Type setting. Medium confidence unless the project sets neither `model` nor `effortLevel` and the user relies on a top-level `effortLevel` in `~/.claude/settings.json`, which Opus 5.5 ignores.
 - confidence: high
 - sweep: yes
 - context: user-settings
@@ -84,11 +84,14 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
   passage: "a top-level `effortLevel` in your user settings file doesn't count for Opus 5.5 … A top-level `effortLevel` in project, local, or managed settings, or one passed with `--settings`, applies to every model."
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/model-config#extended-context
-  passage: "On the Anthropic API, Fable 5.1, Fable 5, Sonnet 5 and later, and Opus 4.7 and later run with the 1M window on every plan, including Pro."
-  verified: 2026-10-06
+  passage: "Fable 5.1, Fable 5, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later run with the 1M window by default, with no `[1m]` suffix needed. That includes sessions on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry"
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#calibrate-effort
   passage: "in Anthropic's testing, Claude Opus 5.5 at `medium` matches or exceeds Claude Opus 5 at `high` on coding and knowledge-work evaluations"
   verified: 2026-10-06
+- source: https://code.claude.com/docs/en/model-config#turn-off-1m-context
+  passage: "To keep sessions at a 200K window, set `CLAUDE_CODE_DISABLE_1M_CONTEXT=1`"
+  verified: 2026-10-27
 
 ### P02 — Thinking disabled or budgeted
 
@@ -132,11 +135,11 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled
-  passage: "If your prompt asked the model to write out its reasoning in the response as a substitute for thinking, remove that instruction and read the reasoning from summarized thinking blocks instead"
-  verified: 2026-10-06
+  passage: "If your prompt asked the model to write its reasoning in the response as a substitute for thinking, remove that instruction. Read the reasoning from summarized thinking blocks instead"
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#safeguard-refusals
-  passage: "Requests that push the model to reproduce its internal reasoning in the response text may be declined with the `reasoning_extraction` category"
-  verified: 2026-10-06
+  passage: "Requests that push the model to reproduce its internal reasoning in the response text might be declined with the `reasoning_extraction` category"
+  verified: 2026-10-27
 
 ### P05 — Thinking-disabled mitigation
 
@@ -180,8 +183,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
   passage: "Existing Claude Opus 5 prompts should perform well without changes, and the patterns in Prompting Claude Opus 5 remain a reasonable starting point."
   verified: 2026-10-06
 - source: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#recommended-changes
-  passage: "Instructions tuned for Claude Opus 5's behavior may no longer be needed"
-  verified: 2026-10-06
+  passage: "Instructions tuned for Claude Opus 5's behavior might no longer be needed"
+  verified: 2026-10-27
 
 ### P08 — Silent agentic turns
 
@@ -193,8 +196,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: high
 - sweep: no
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#user-facing-progress-updates
-  passage: "their text is empty at the default `thinking.display`, so a client that renders only `text` blocks can look silent during a long agentic turn"
-  verified: 2026-10-06
+  passage: "their text is empty at the default `thinking.display`. As a result, a client that renders only `text` blocks can look silent during a long agentic turn"
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#text-between-tool-calls
   passage: "`"updates"` (beta, `thinking-display-updates-2026-08-18` header) returns the progress updates while reasoning stays hidden"
   verified: 2026-10-06
@@ -333,13 +336,13 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - kind: hand-off
 - area: api-code
 - signal: `computer_20251124`
-- applies when: API code on the Claude API or Google Cloud
+- applies when: API code on the Claude API or Claude Models on Google Cloud (Google managed)
 - change: Hand off per the API hand-off rule. There the old tool returns a 400 and the fix is `computer_toolset_20260801`; on Amazon Bedrock it still works, so record no finding for Bedrock-only code. Record a second line on the agent loop that runs the tool's calls — where it reads the action from `input.action`, handles only the first `tool_use` block, or returns results without `toolset_name` — since the toolset changes the loop as well as the declaration.
 - confidence: high
 - sweep: yes
 - source: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported
-  passage: "On the Claude API and Google Cloud, Claude Opus 5.5 supports only the toolset: a request that declares a `computer_20251124` tool returns a 400 `invalid_request_error`."
-  verified: 2026-10-06
+  passage: "On the Claude API and Claude Models on Google Cloud (Google managed), Claude Opus 5.5 supports only the toolset: a request that declares a `computer_20251124` tool returns a 400 `invalid_request_error`."
+  verified: 2026-10-27
 - source: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#computer-20251124-is-not-supported
   passage: "On Amazon Bedrock, the earlier `computer_20251124` tool continues to work on Claude Opus 5.5 as it does on Claude Opus 5, so no change is needed there."
   verified: 2026-10-06
@@ -369,18 +372,18 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - area: memory, rules, agents, skills, commands, hooks, settings, ci
 - signal: `model: claude-opus-5` in an agent's or skill's frontmatter, in settings, or in a launch command or dispatch recipe — a `--model` flag in a CI workflow or a `claude -p` recipe, a `model` argument to an Agent call — which instructs how a session or agent starts even when written as prose
 - applies when: instruction files, workflows and scripts that launch a session, unless the project records the pin as deliberate as already decided
-- change: Move the pin to `claude-opus-5-5` and set its effort as P21 explains — `effort: medium`, or no `effort:` so the file inherits the session's level — or record why it stays. Where a launch sets no effort — no `--effort`, no `CLAUDE_CODE_EFFORT_LEVEL`, no project effort setting — say that Opus 5 starts at `high` and Opus 5.5 at `medium`, so the move drops a level for everyone who runs it.
+- change: Move the pin to `claude-opus-5-5` and set its effort as P21 explains — `effort: medium`, or no `effort:` so the file inherits the session's level — or record why it stays; where `CLAUDE_CODE_EFFORT_LEVEL` is set, it overrides the file's `effort:`. Where a launch sets no effort — no `--effort`, no `CLAUDE_CODE_EFFORT_LEVEL`, no project effort setting — say that Opus 5 starts at `high` and Opus 5.5 at `medium`, so the move drops a level for everyone who runs it.
 - confidence: medium
 - sweep: yes
 - source: https://code.claude.com/docs/en/model-config#adjust-effort-level
-  passage: "The model's default effort: `high` on every model that supports effort, except that Opus 5.5 and Sonnet 5.5 default to `medium`"
-  verified: 2026-10-06
+  passage: "The model's default effort: `high` on every model that supports effort, except that Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to `medium`"
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/sub-agents#choose-a-model
   passage: "Full model ID: use a full model ID such as `claude-opus-5-5` or `claude-sonnet-5`."
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields
-  passage: "Effort level when this subagent is active. Overrides the session effort level. Default: inherits from session."
-  verified: 2026-10-06
+  passage: "Effort level when this subagent is active. Overrides the session effort level, but not the `CLAUDE_CODE_EFFORT_LEVEL` environment variable."
+  verified: 2026-10-27
 
 ### P21 — Agent or skill on Opus 5.5 carrying an effort left from Opus 5
 
@@ -407,8 +410,8 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - source: https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#new-model
   basis: inference: the id `claude-opus-5-5` begins with `claude-opus-5`, so any prefix selector for Opus 5 also matches it.
 - source: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#recommended-changes
-  passage: "Instructions tuned for Claude Opus 5's behavior may no longer be needed"
-  verified: 2026-10-06
+  passage: "Instructions tuned for Claude Opus 5's behavior might no longer be needed"
+  verified: 2026-10-27
 
 ### P23 — Opus 5 skill preloaded into an agent moving to Opus 5.5
 
@@ -420,11 +423,11 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: medium
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#recommended-changes
-  passage: "Re-evaluate model-specific prompt instructions. Instructions tuned for Claude Opus 5's behavior may no longer be needed"
-  verified: 2026-10-06
+  passage: "Re-evaluate model-specific prompt instructions. Instructions tuned for Claude Opus 5's behavior might no longer be needed"
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/sub-agents#preload-skills-into-subagents
-  passage: "The full content of each listed skill is injected into the subagent's context at startup."
-  verified: 2026-10-06
+  passage: "The full content of each listed skill is injected into the subagent's context at startup"
+  verified: 2026-10-27
 
 ### P24 — No Claude Code version floor for Opus 5.5
 
@@ -475,11 +478,11 @@ Traps whose matching lines in a project ask the model to reveal its reasoning, w
 - confidence: medium
 - sweep: no
 - source: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#recommended-changes
-  passage: "Re-evaluate model-specific prompt instructions. Instructions tuned for Claude Opus 5's behavior may no longer be needed"
-  verified: 2026-10-06
+  passage: "Re-evaluate model-specific prompt instructions. Instructions tuned for Claude Opus 5's behavior might no longer be needed"
+  verified: 2026-10-27
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models."
-  verified: 2026-10-06
+  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, Haiku 5.5, or the Fable models."
+  verified: 2026-10-27
 
 ### P28 — Transcript or output parser that reads only text blocks
 

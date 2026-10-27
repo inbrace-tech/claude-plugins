@@ -3,8 +3,8 @@
   "traps": [
     {
       "id": "P01",
-      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28). In 0.6.2 a Sonnet 5 fallback variable that a project documents beside a `model` already on Sonnet 5.5 is no finding: on the 0.6.1 suite a docs file explaining that pin drew a change (#86).",
-      "refs": { "inbrace-tech/claude-skills": [28, 86] }
+      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28). In 0.6.2 a Sonnet 5 fallback variable that a project documents beside a `model` already on Sonnet 5.5 is no finding: on the 0.6.1 suite a docs file explaining that pin drew a change (#86). Re-verified on 2026-10-27 (#151): the page now says the 1M window is the default, which `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` turns off, on every provider, so the one line says 'by default' instead of 'always on the Anthropic API'; the cited anchor moved to the extended-context heading.",
+      "refs": { "inbrace-tech/claude-skills": [28, 86], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P02",
@@ -28,8 +28,8 @@
     },
     {
       "id": "P06",
-      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28). Its areas became ids of the plan's map in #61 (agents, instructions → memory, rules, agents, skills, commands, hooks), after a graded run missed a planted P13 in a skill that the trap's area did not cover.",
-      "refs": { "inbrace-tech/claude-skills": [28, 61] }
+      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28). Its areas became ids of the plan's map in #61 (agents, instructions → memory, rules, agents, skills, commands, hooks), after a graded run missed a planted P13 in a skill that the trap's area did not cover. Re-verified on 2026-10-27 (#151): 'Default: inherits from session' is gone from the frontmatter table, and a per-invocation `effort` parameter overrides the field while `CLAUDE_CODE_EFFORT_LEVEL` overrides both, so the change names all three.",
+      "refs": { "inbrace-tech/claude-skills": [28, 61], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P07",
@@ -113,8 +113,8 @@
     },
     {
       "id": "P23",
-      "learned": "Carried from the Opus audit's row of the same name (P17 there), first written in #1 or #2, and re-grounded in the Sonnet 5.5 guides in 0.5.0 (#28).",
-      "refs": { "inbrace-tech/claude-skills": [2, 28] }
+      "learned": "Carried from the Opus audit's row of the same name (P17 there), first written in #1 or #2, and re-grounded in the Sonnet 5.5 guides in 0.5.0 (#28). Re-verified on 2026-10-27 (#151): the migration guide and what's new no longer say structured outputs and strict tool use are unavailable for Sonnet 5.5 on Amazon Bedrock, so the Bedrock signal and its fallback are removed.",
+      "refs": { "inbrace-tech/claude-skills": [2, 28], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P24",
@@ -143,8 +143,8 @@
     },
     {
       "id": "P29",
-      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28).",
-      "refs": { "inbrace-tech/claude-skills": [28] }
+      "learned": "Written in 0.5.0 for the Sonnet 5 → 5.5 audit from the Sonnet 5.5 prompting guide, migration guide and Claude Code documentation (#28). Re-verified on 2026-10-27 (#151): the migration guide now lists Haiku 5.5 among the advisors a Sonnet 5.5 executor rejects, so the signal names it.",
+      "refs": { "inbrace-tech/claude-skills": [28], "inbrace-tech/claude-plugins": [151] }
     },
     {
       "id": "P30",

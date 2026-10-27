@@ -1,6 +1,6 @@
 ---
 transition: opus-5-to-5-5
-verified: 2026-10-06
+verified: 2026-10-27
 ---
 
 # Opus 5 → Opus 5.5: change digest
@@ -68,15 +68,15 @@ What changes from Claude Opus 5 to Claude Opus 5.5 that can bear on a Claude Cod
   passage: "On Claude Opus 5.5, thinking is always on: a request that sets `thinking: {"type": "disabled"}`, or a manual budget with"
   verified: 2026-10-06
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models."
-  verified: 2026-10-06
+  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, Haiku 5.5, or the Fable models."
+  verified: 2026-10-27
 
 ### C09 — Instructions that stood in for thinking
 
 - change: An instruction that asked for the reasoning in the response as a substitute for thinking is to be removed.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#prompts-written-for-thinking-disabled
-  passage: "If your prompt asked the model to write out its reasoning in the response as a substitute for thinking, remove that instruction"
-  verified: 2026-10-06
+  passage: "If your prompt asked the model to write its reasoning in the response as a substitute for thinking, remove that instruction"
+  verified: 2026-10-27
 
 ### C10 — Mitigations written for thinking disabled
 
@@ -141,8 +141,8 @@ What changes from Claude Opus 5 to Claude Opus 5.5 that can bear on a Claude Cod
 
 - change: An instruction that asks the model to write out its reasoning in the response text is to be removed; a short explanation of the answer or a summary of actions is still fine.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#safeguard-refusals
-  passage: "If your prompts ask the model to write out its reasoning in the response, remove those instructions"
-  verified: 2026-10-06
+  passage: "If your prompts ask the model to write its reasoning in the response, remove those instructions"
+  verified: 2026-10-27
 
 ### C19 — Fallback after a refusal
 
@@ -165,8 +165,8 @@ What changes from Claude Opus 5 to Claude Opus 5.5 that can bear on a Claude Cod
 
 - change: The model paces itself to a time budget or an elapsed-time line the harness adds, which a team of agents can use to finish sooner.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#time-signals-for-multi-agent-harnesses
-  passage: "Claude Opus 5.5 pays close attention to information about elapsed time"
-  verified: 2026-10-06
+  passage: "Claude Opus 5.5 is highly responsive to information about elapsed time"
+  verified: 2026-10-27
 
 ### C22 — Loosely specified tasks across several apps
 
@@ -240,7 +240,7 @@ Instructions written for a model older than Opus 5, which Opus 5 already made un
 
 - residue: A review prompt that asked for only high-severity issues already made Opus 5 report less than it found.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5#capability-improvements
-  passage: "the model may follow that instruction literally and report less; ask it to report everything and filter in a separate pass instead"
-  verified: 2026-10-06
+  passage: "the model might follow that instruction literally and report less; ask it to report everything and filter in a separate pass instead"
+  verified: 2026-10-27
 
 </older_residue>

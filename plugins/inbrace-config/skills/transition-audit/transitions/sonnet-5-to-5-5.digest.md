@@ -1,6 +1,6 @@
 ---
 transition: sonnet-5-to-5-5
-verified: 2026-10-06
+verified: 2026-10-27
 ---
 
 # Sonnet 5 → Sonnet 5.5: change digest
@@ -34,15 +34,15 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 - change: In Claude Code the default effort of Sonnet 5.5 is `medium`, while Sonnet 5 defaults to `high`.
 - source: https://code.claude.com/docs/en/model-config#adjust-effort-level
-  passage: "except that Opus 5.5 and Sonnet 5.5 default to `medium`"
-  verified: 2026-10-06
+  passage: "except that Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to `medium`"
+  verified: 2026-10-27
 
 ### C05 — Lower effort stops to check in
 
 - change: At `low` and `medium` the model more often pauses to ask before a long agentic task is done; a higher effort or a carry-through instruction addresses it.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#calibrate-effort
-  passage: "At `low` and `medium`, on long agentic tasks, it's more likely to stop and check in with the user before it finishes."
-  verified: 2026-10-06
+  passage: "At `low` and `medium`, on long agentic tasks, it's more likely to stop and check in with the user before it completes its work."
+  verified: 2026-10-27
 
 ### C06 — Asking for less thinking does not reduce it
 
@@ -76,8 +76,8 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 - change: At `xhigh` and `max` the model can start its own review rounds after finishing, sometimes with subagents, which costs time and tokens.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#steer-initiative-and-scope
-  passage: "After it finishes a task, it can start its own rounds of review and verification, sometimes with subagents if your harness provides them."
-  verified: 2026-10-06
+  passage: "After it completes a task, it can start its own rounds of review and verification, sometimes with subagents if your harness provides them."
+  verified: 2026-10-27
 
 ### C11 — Open-ended requests start building
 
@@ -107,8 +107,8 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 - change: On Sonnet 5.5, Claude Code's thinking toggle, `alwaysThinkingEnabled: false` and `MAX_THINKING_TOKENS=0` have no effect.
 - source: https://code.claude.com/docs/en/model-config#extended-thinking
-  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models."
-  verified: 2026-10-06
+  passage: "You can't turn thinking off on Opus 5.5, Sonnet 5.5, Haiku 5.5, or the Fable models."
+  verified: 2026-10-27
 
 ### C16 — Forced tool use is rejected
 
@@ -135,8 +135,8 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 - change: An older instruction that delays everything to the final response is to be removed, since the model now writes progress notes between tool calls.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#user-facing-progress-updates
-  passage: "Next, remove older instructions such as "hold all findings for the final response"."
-  verified: 2026-10-06
+  passage: "Next, remove older instructions such as "hold all findings for the final response.""
+  verified: 2026-10-27
 
 ### C20 — `computer_20251124` is rejected on the Claude API and Google Cloud
 
@@ -147,10 +147,10 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 ### C21 — The advisor tool accepts fewer advisors
 
-- change: With a Sonnet 5.5 executor, Opus 4.8, Opus 4.7 and Sonnet 5 advisors return a 400 error, and the advice returns encrypted.
+- change: With a Sonnet 5.5 executor, Opus 4.8, Opus 4.7, Sonnet 5 and Haiku 5.5 advisors return a 400 error, and the advice returns encrypted.
 - source: https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#advisor-tool-pairings
-  passage: "Claude Opus 4.8, Claude Opus 4.7, and Claude Sonnet 5 advisors work with a Claude Sonnet 5 executor, but with a Claude Sonnet 5.5 executor they return a 400 `invalid_request_error`."
-  verified: 2026-10-06
+  passage: "Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, and Claude Haiku 5.5 advisors … with a Claude Sonnet 5.5 executor they return a 400 `invalid_request_error`."
+  verified: 2026-10-27
 
 ### C22 — Refusals come in five categories
 
@@ -180,8 +180,8 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 
 - change: A prompt that tells the model to minimise tool calls makes it answer from training knowledge where a search would catch what changed.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5#tool-use-in-chat-and-knowledge-work
-  passage: "check your prompt for language that discourages tool use, such as "only use tools when strictly necessary" or "minimize tool calls", and remove it"
-  verified: 2026-10-06
+  passage: "check your prompt for language that discourages tool use, such as "only use tools when strictly necessary" or "minimize tool calls," and remove it"
+  verified: 2026-10-27
 
 ### C26 — Text placed after tool results can read as an injection
 
@@ -243,9 +243,9 @@ What changes from Claude Sonnet 5 to Claude Sonnet 5.5 that can bear on a Claude
 - source: https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5#new-model
   passage: "The tokenizer is the same as Claude Sonnet 5's, so the same text produces the same token counts."
   verified: 2026-10-06
-- source: https://code.claude.com/docs/en/model-config#sonnet-5-5-and-sonnet-5-context-window
-  passage: "On the Anthropic API, Sonnet 5.5 and Sonnet 5 always run with the 1M context window."
-  verified: 2026-10-06
+- source: https://code.claude.com/docs/en/model-config#extended-context
+  passage: "Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later run with the 1M window by default, with no `[1m]` suffix needed."
+  verified: 2026-10-27
 
 </changes>
 
@@ -260,12 +260,12 @@ Instructions and settings written for a model older than Sonnet 5, which Sonnet 
   passage: "Claude Sonnet 5.5 rejects a prefilled last assistant turn with a 400 error, as Claude Sonnet 4.6 and Claude Sonnet 5 do."
   verified: 2026-10-06
 
-### R02 — Non-default sampling parameters
+### R02 — Sampling parameters
 
-- residue: A non-default `temperature`, `top_p` or `top_k` already returned an error on Sonnet 5.
+- residue: Setting `temperature`, `top_p` or `top_k` at all already returned a 400 error on Sonnet 5.
 - source: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5#tone-and-writing-style
-  passage: "setting `temperature`, `top_p`, or `top_k` to a non-default value returns a 400 error on Claude Sonnet 5"
-  verified: 2026-10-06
+  passage: "setting `temperature`, `top_p`, or `top_k` returns a 400 error on Claude Sonnet 5"
+  verified: 2026-10-27
 
 ### R03 — Manual thinking budgets
 
