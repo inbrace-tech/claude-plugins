@@ -9,11 +9,7 @@ Every run is a real model call, counted against your plan's usage ([Requirements
 - never as a CI job, and never with an API key stored as a secret, although the documentation shows that setup ([Run evals in CI](https://code.claude.com/docs/en/plugin-evals#run-evals-in-ci)): a full run costs tens of dollars, and nothing should spend that unattended;
 - only with the audit's non-interactive arguments, `--scope full --mode agents --stop-at-report`, so a run can never reach a gate that applies changes ([transition-audit N02, N15](../skills/transition-audit/SKILL.md)).
 
-Before the first run, install the sandbox's prerequisites. The audit needs `Bash` (for `git status`, `grep` and `wc`), and a granted `Bash` runs only under Claude Code's OS-level sandbox, which on Linux needs `bubblewrap` and `socat` ([Grant tools](https://code.claude.com/docs/en/plugin-evals#grant-tools), [Sandboxing](https://code.claude.com/docs/en/sandboxing)):
-
-```bash
-sudo apt install bubblewrap socat
-```
+Before the first run, set up the sandbox's prerequisites. The audit needs `Bash` (for `git status`, `grep` and `wc`), and a granted `Bash` runs only under Claude Code's OS-level sandbox, which on Linux needs `bubblewrap` and `socat` from your distribution's packages; [Sandboxing](https://code.claude.com/docs/en/sandboxing) lists them per platform ([Grant tools](https://code.claude.com/docs/en/plugin-evals#grant-tools)).
 
 Then, from `plugins/inbrace-config`:
 
