@@ -25,7 +25,7 @@ Each command starts only when you type it. Three examples:
 2. The second audits it for Claude Sonnet 5 → Sonnet 5.5, answers the plan's questions in advance and ends at the report, changing nothing.
 3. The third names the two models itself, for a transition the plugin knows, and audits another folder.
 
-The audit lists and measures the files first, shows a plan with its estimated cost in tokens and dollars, and asks before it reads any file. It asks again before each later costly stage and before applying anything. The repository's [README](https://github.com/inbrace-tech/claude-skills#readme) documents every argument, the install scopes and updates.
+The audit lists and measures the files first, shows a plan with its estimated cost in tokens and dollars, and asks before it reads any file. It asks again before each later costly stage and before applying anything. The repository's [README](https://github.com/inbrace-tech/claude-plugins#readme) documents every argument, the install scopes and updates.
 
 ## What it reads, writes and sends
 
@@ -47,8 +47,8 @@ It ships no hooks, no MCP servers and no executables. Its two agents, `batch-aud
 
 ## Support, security and privacy
 
-- Questions and bugs: [open an issue](https://github.com/inbrace-tech/claude-skills/issues) or write to contato@inbrace.com.br.
-- Security problems: report them privately through [Report a vulnerability](https://github.com/inbrace-tech/claude-skills/security/advisories/new), as [SECURITY.md](https://github.com/inbrace-tech/claude-skills/blob/main/SECURITY.md) describes.
+- Questions and bugs: [open an issue](https://github.com/inbrace-tech/claude-plugins/issues) or write to contato@inbrace.com.br.
+- Security problems: report them privately through [Report a vulnerability](https://github.com/inbrace-tech/claude-plugins/security/advisories/new), as [SECURITY.md](https://github.com/inbrace-tech/claude-plugins/blob/main/SECURITY.md) describes.
 - Privacy policy: https://inbrace.com.br/privacy
 
 ## License

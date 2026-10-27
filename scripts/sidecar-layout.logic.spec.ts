@@ -10,7 +10,7 @@ describe("sidecar layout", () => {
     "    {",
     '      "id": "N01",',
     '      "where": "Stage 1",',
-    '      "refs": { "docs": ["https://example.com/a", "https://example.com/b"], "inbrace-tech/claude-skills": [12, 21] },',
+    '      "refs": { "docs": ["https://example.com/a", "https://example.com/b"], "inbrace-tech/claude-plugins": [12, 21] },',
     '      "what": "Why — it exists."',
     "    },",
     "    {",

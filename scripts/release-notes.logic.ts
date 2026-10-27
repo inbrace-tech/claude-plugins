@@ -2,7 +2,7 @@
 
 /** Where the full changelog lives at a release's tag. */
 export const changelogUrl = (plugin: string, version: string): string =>
-  `https://github.com/inbrace-tech/claude-skills/blob/${plugin}@${version}/plugins/${plugin}/CHANGELOG.md`;
+  `https://github.com/inbrace-tech/claude-plugins/blob/${plugin}@${version}/plugins/${plugin}/CHANGELOG.md`;
 
 /** A version as Changesets writes it: semver, with an optional prerelease or build suffix. */
 export const VERSION = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.+-]+)?$/;

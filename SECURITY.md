@@ -8,7 +8,7 @@ Fixes land on the latest version of each plugin in this marketplace. Older versi
 
 **Please do not open a public issue for a security problem.**
 
-Report it privately through GitHub's [Report a vulnerability](https://github.com/inbrace-tech/claude-skills/security/advisories/new) form. It opens a private advisory that only the maintainers can see.
+Report it privately through GitHub's [Report a vulnerability](https://github.com/inbrace-tech/claude-plugins/security/advisories/new) form. It opens a private advisory that only the maintainers can see.
 
 Please include what you can:
 

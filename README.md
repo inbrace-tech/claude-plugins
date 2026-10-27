@@ -1,4 +1,4 @@
-# Inbrace Claude Skills
+# Inbrace Claude Plugins
 
 Curated Claude Code skills from the team at [Inbrace](https://github.com/inbrace-tech), kept current with each new Claude model.
 
@@ -12,7 +12,7 @@ Inside Claude Code, from your project root:
 1. Add the marketplace, once:
 
    ```text
-   /plugin marketplace add inbrace-tech/claude-skills
+   /plugin marketplace add inbrace-tech/claude-plugins
    ```
 
 2. Install a plugin, for example `inbrace-config`:
@@ -54,20 +54,20 @@ New to plugins? These steps take you from nothing to a running audit. Every comm
 Start `claude` in any project, then add this marketplace and install the plugin:
 
 ```text
-/plugin marketplace add inbrace-tech/claude-skills
+/plugin marketplace add inbrace-tech/claude-plugins
 /plugin install inbrace-config@inbrace
 ```
 
 The install command opens a panel with the plugin's details, where you pick a scope (step 3). On Claude Code v2.1.275 or later, one command does both:
 
 ```text
-/plugin install inbrace-config --marketplace inbrace-tech/claude-skills
+/plugin install inbrace-config --marketplace inbrace-tech/claude-plugins
 ```
 
 ### 2. Or install from your terminal
 
 ```bash
-claude plugin marketplace add inbrace-tech/claude-skills
+claude plugin marketplace add inbrace-tech/claude-plugins
 claude plugin install inbrace-config@inbrace --scope user
 ```
 
@@ -130,7 +130,7 @@ Or open the plugin on the **Installed** tab in `/plugin` and select **Update now
 
 Auto-update is off by default for a third-party marketplace like this one. Turn it on per marketplace: in `/plugin`, go to **Marketplaces**, select `inbrace` and select **Enable auto-update**.
 
-Each release is a [GitHub Release](https://github.com/inbrace-tech/claude-skills/releases) with its notes, tagged `inbrace-config@x.y.z`. The plugin's full history is in [`plugins/inbrace-config/CHANGELOG.md`](plugins/inbrace-config/CHANGELOG.md).
+Each release is a [GitHub Release](https://github.com/inbrace-tech/claude-plugins/releases) with its notes, tagged `inbrace-config@x.y.z`. The plugin's full history is in [`plugins/inbrace-config/CHANGELOG.md`](plugins/inbrace-config/CHANGELOG.md).
 
 Checked against [Keep plugins updated](https://code.claude.com/docs/en/plugins/install#keep-plugins-updated) and [Host and maintain a marketplace › Keep users up to date](https://code.claude.com/docs/en/plugins/host-marketplace#keep-users-up-to-date).
 
@@ -153,7 +153,7 @@ Removing the marketplace also uninstalls every plugin you installed from it.
 Test a branch, or a local copy for one session:
 
 ```bash
-claude plugin marketplace add inbrace-tech/claude-skills#<branch>
+claude plugin marketplace add inbrace-tech/claude-plugins#<branch>
 claude --plugin-dir ./plugins/inbrace-config
 ```
 

@@ -34,7 +34,7 @@ The first pass cost US$21.16 at list price and the confirmation run US$5.25. Eve
 | Correct findings beyond the key | refusal handling (P22), token medians that mix Haiku 4.5 and 5.5 counts (P17), every `effort: 'low'` recipe for the Haiku stage (P03) |
 | Findings outside the known traps | 0 (13 discovery findings, all matching a trap) |
 | Verifier | 1 duplicate discarded, 10 downgraded from change to re-test or optional |
-| Cost per run | US$33.17, 17 minutes |
+| Cost per run | US$33.17, about 8 minutes wall-clock |
 
 The run found nothing the traps did not already describe. On a repository whose Haiku use is a single mechanical stage, that is the expected result. It also means the run says nothing about what discovery would add on a project that uses Haiku in more roles.
 
