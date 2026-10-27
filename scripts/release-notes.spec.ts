@@ -24,13 +24,13 @@ describe("release-notes, end to end", () => {
   it("prints this repository's 0.5.0 section and the link at its tag", () => {
     const result = run(repo, "0.5.0");
     expect(result.status, `release-notes failed:\n${result.stderr}`).toBe(0);
-    expect(result.stdout).toMatch(/^- New skill, `\/inbrace-config:audit-sonnet-5-5`/);
+    expect(result.stdout).toMatch(/^- The Sonnet 5 → 5.5 audit, `\/inbrace-config:audit-sonnet-5-5`/);
     expect(result.stdout).not.toMatch(/## 0\.4\.7/);
     expect(result.stdout).toMatch(/Full changelog: https:\/\/github\.com\/inbrace-tech\/claude-plugins\/blob\/inbrace-config@0\.5\.0\/plugins\/inbrace-config\/CHANGELOG\.md\n$/);
   });
 
   it("reads the version as v0.5.0 and inbrace-config@0.5.0 too", () => {
-    for (const arg of ["v0.5.0", "inbrace-config@0.5.0"]) expect(run(repo, arg).stdout).toMatch(/^- New skill/);
+    for (const arg of ["v0.5.0", "inbrace-config@0.5.0"]) expect(run(repo, arg).stdout).toMatch(/^- The Sonnet 5 → 5.5 audit/);
   });
 
   it("exits 1 on a version with no section, 2 without a version or with a malformed one", () => {
