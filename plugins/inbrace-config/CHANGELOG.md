@@ -2,6 +2,12 @@
 
 The plugin was named `claude-config` before 0.4.0. Entries before 0.7.0 are condensed; the full notes of each release are on the repository's GitHub Releases page.
 
+## 0.8.2
+
+### Patch Changes
+
+- Directory listing cleanup: trim the regression suite's graders, condense the older changelog entries, drop `documentationUrl` and point every older link at inbrace-tech/claude-plugins. ([#155](https://github.com/inbrace-tech/claude-plugins/pull/155) by [@ropdias](https://github.com/ropdias))
+
 ## 0.8.1
 
 ### Patch Changes
