@@ -1,0 +1,56 @@
+# Inbrace Model Upgrade
+
+A **model-transition audit** for a project moving from one Claude model to another. It covers what Claude Code reads as instructions — `CLAUDE.md`, rules, agents, skills, settings and hooks — and the project's model-dependent code, CI and docs. Install it for the upgrade, and remove it when you are done; nothing it ships is needed between upgrades.
+
+You start it with one of four commands, shown under [Use it](#use-it). The audit explores the project against what Anthropic's documentation says changed between the two models, checks a list of known traps, the edge cases earlier audits learned, reports what it would change and why, and applies only what you approve. It knows three transitions, Claude Opus 5 → Opus 5.5, Claude Sonnet 5 → Sonnet 5.5 and Claude Haiku 4.5 → Haiku 5.5, and stops for any other pair.
+
+What the documentation says ships with the plugin: for each transition, a digest of the changes and the known traps, every item with its page and a short quoted passage, and the date it was last checked. The audit reads no page when it runs. The maintainers compare every passage with the pages weekly and release a new version when one changes, so update the plugin before an audit, and read the date the report gives.
+
+## Requirements
+
+- Claude Code. The audit runs from typed commands, uses `Bash` and can start agents, so it is built for Claude Code and not for chat.
+- No network access: the audit reaches none.
+
+## Use it
+
+Each command starts only when you type it. Three examples:
+
+```text
+/inbrace-model-upgrade:audit-opus-5-5
+/inbrace-model-upgrade:audit-sonnet-5-5 --scope full --mode agents --stop-at-report
+/inbrace-model-upgrade:audit-model-transition sonnet-5 sonnet-5-5 path/to/project
+```
+
+1. The first audits the current project for Claude Opus 5 → Opus 5.5.
+2. The second audits it for Claude Sonnet 5 → Sonnet 5.5, answers the plan's questions in advance and ends at the report, changing nothing.
+3. The third names the two models itself, for a transition the plugin knows, and audits another folder.
+
+The audit lists and measures the files first, shows a plan with its estimated cost in tokens and dollars, and asks before it reads any file. It asks again before each later costly stage and before applying anything. The repository's [README](https://github.com/inbrace-tech/claude-plugins#readme) documents every argument, the install scopes and updates.
+
+## What it reads, writes and sends
+
+- **Reads** the files of the project you audit, inside your Claude Code session, and its own files: the skills, and each transition's change digest and known traps.
+- **Fetches nothing.** It runs no command and uses no tool that reaches the network. The documentation pages its knowledge quotes are named beside each passage, as sources you can open yourself.
+- **Writes** its working files to `.model-audits/<target>-<date>/` in the audited project, with a `.gitignore` that keeps the folder out of `git status`. It edits project files only after you approve each change.
+- **Sends nothing.** The plugin has no server of its own and collects no data. When a run learns something the audit does not know yet, it offers to draft a generic issue for this repository, with no path, name, code or text from your project, and gives you a link to GitHub's issue form with the draft filled in. Opening the link and submitting the form is yours to do, or not.
+
+It ships no hooks, no MCP servers and no executables. Its two agents, `batch-auditor` and `finding-verifier`, can only read files and return text. The `evals/` folder holds the plugin's regression suite and its sample projects; nothing in it runs when you use the plugin.
+
+## Troubleshooting
+
+- **The command is not in the `/` menu.** Run `claude plugin list` to check the plugin is installed and enabled, then `/reload-plugins`.
+- **Asking for an audit in plain words does nothing.** That is by design: only the typed command starts it.
+- **The audit stops, saying it does not know the transition.** It runs only for the transitions it ships knowledge for, and lists them. Update the plugin, or open an issue asking for the transition.
+- **The report's "checked on" date is old.** Update the plugin: `/plugin marketplace update inbrace`, then `claude plugin update inbrace-model-upgrade@inbrace`.
+- **A headless run stops at the plan.** Pass `--scope`, and `--mode` when the plan has several batches.
+- **`git status` is dirty before the audit starts.** Install at user scope; the project scope writes to the versioned `.claude/settings.json`.
+
+## Support, security and privacy
+
+- Questions and bugs: [open an issue](https://github.com/inbrace-tech/claude-plugins/issues) or write to contato@inbrace.com.br.
+- Security problems: report them privately through [Report a vulnerability](https://github.com/inbrace-tech/claude-plugins/security/advisories/new), as [SECURITY.md](https://github.com/inbrace-tech/claude-plugins/blob/main/SECURITY.md) describes.
+- Privacy policy: https://inbrace.com.br/privacy
+
+## License
+
+MIT © Inbrace. The release history is in [CHANGELOG.md](CHANGELOG.md).

@@ -4,7 +4,7 @@
 
 /** One plugin as read from disk: repository paths and file text, `null` when the file is missing. */
 export interface PluginInput {
-  /** The plugin directory, e.g. `plugins/inbrace-config`. */
+  /** The plugin directory, e.g. `plugins/inbrace-model-upgrade`. */
   dir: string;
   packageText: string | null;
   pluginText: string | null;

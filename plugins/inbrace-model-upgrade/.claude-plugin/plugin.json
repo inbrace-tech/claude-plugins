@@ -1,0 +1,14 @@
+{
+  "name": "inbrace-model-upgrade",
+  "displayName": "Inbrace Model Upgrade",
+  "description": "A model-transition audit for a Claude Code setup (Opus 5 to 5.5, Sonnet 5 to 5.5, Haiku 4.5 to 5.5) that explores the project against what Anthropic's docs say changed, checks the known traps, reports, asks, then applies only what you approve. It reaches no network.",
+  "version": "0.8.2",
+  "author": {
+    "name": "Inbrace",
+    "url": "https://github.com/inbrace-tech"
+  },
+  "homepage": "https://github.com/inbrace-tech/claude-plugins",
+  "repository": "https://github.com/inbrace-tech/claude-plugins",
+  "license": "MIT",
+  "keywords": ["claude-md", "prompt-engineering", "audit", "model-transition", "opus-5-5", "sonnet-5-5", "haiku-5-5"]
+}
