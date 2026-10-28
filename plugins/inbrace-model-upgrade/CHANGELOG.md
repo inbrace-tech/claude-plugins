@@ -2,6 +2,12 @@
 
 The plugin was named `claude-config` before 0.4.0 and `inbrace-config` before 0.9.0. Entries before 0.7.0 are condensed; the full notes of each release are on the repository's GitHub Releases page.
 
+## 0.9.2
+
+### Patch Changes
+
+- The plugin's display name is now "Model Upgrade Audit"; its `name` and commands are unchanged. ([#169](https://github.com/inbrace-tech/claude-plugins/pull/169) by [@ropdias](https://github.com/ropdias))
+
 ## 0.9.1
 
 ### Patch Changes
