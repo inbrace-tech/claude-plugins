@@ -1,4 +1,4 @@
-# Inbrace Model Upgrade
+# Model Upgrade Audit
 
 A **model-transition audit** for a project moving from one Claude model to another. It covers what Claude Code reads as instructions — `CLAUDE.md`, rules, agents, skills, settings and hooks — and the project's model-dependent code, CI and docs. Install it for the upgrade, and remove it when you are done; nothing it ships is needed between upgrades.
 
