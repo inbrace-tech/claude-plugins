@@ -2,6 +2,12 @@
 
 The plugin was named `claude-config` before 0.4.0 and `inbrace-config` before 0.9.0. Entries before 0.7.0 are condensed; the full notes of each release are on the repository's GitHub Releases page.
 
+## 0.9.1
+
+### Patch Changes
+
+- The eval suite's guide moves out of the plugin folder to the repository's `docs/eval-suite.md`; the suite itself stays in `evals/`. ([#165](https://github.com/inbrace-tech/claude-plugins/pull/165) by [@ropdias](https://github.com/ropdias))
+
 ## 0.9.0
 
 ### Minor Changes
