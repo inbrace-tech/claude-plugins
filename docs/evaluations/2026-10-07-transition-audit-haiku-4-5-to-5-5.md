@@ -6,7 +6,7 @@ The Haiku 4.5 → Haiku 5.5 transition ([#135](https://github.com/inbrace-tech/c
 
 ## Regression suite
 
-The plugin's [`claude plugin eval` suite](../../plugins/inbrace-model-upgrade/evals/README.md), on the branch of #136, with the README's command: `--model claude-opus-5-5`, `--ablation none`, `Bash`, `Write` and `Edit` granted, no fetch tool, `--concurrency 2`. The Haiku fixture is new in this release. It has 39 positives, 9 negatives and one older-residue row, all written from the transition's own traps.
+The plugin's [`claude plugin eval` suite](../eval-suite.md), on the branch of #136, with the README's command: `--model claude-opus-5-5`, `--ablation none`, `Bash`, `Write` and `Edit` granted, no fetch tool, `--concurrency 2`. The Haiku fixture is new in this release. It has 39 positives, 9 negatives and one older-residue row, all written from the transition's own traps.
 
 | Case | First pass, 3 runs | After the fix, 1 run |
 |---|---|---|

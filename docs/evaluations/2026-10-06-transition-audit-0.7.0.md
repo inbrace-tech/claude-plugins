@@ -6,7 +6,7 @@
 
 ## Regression suite
 
-The plugin's [`claude plugin eval` suite](../../plugins/inbrace-model-upgrade/evals/README.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-plugins/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
+The plugin's [`claude plugin eval` suite](../eval-suite.md), run on the version branch of [#124](https://github.com/inbrace-tech/claude-plugins/pull/124) with the README's command: `--model claude-opus-5-5`, `--ablation none`, three runs per case, `Bash`, `Write` and `Edit` granted, no fetch tool.
 
 | Case | Opus 5 → 5.5 | Sonnet 5 → 5.5 | 0.6.1, one run ([#86](https://github.com/inbrace-tech/claude-plugins/issues/86)) |
 |---|---|---|---|

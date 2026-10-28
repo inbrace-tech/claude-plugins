@@ -1,13 +1,13 @@
 # Eval suite
 
-This directory is the plugin's [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals) suite for the model-transition audit. It checks, on a seeded fixture per transition, that the audit still finds what it found when it was released, holds its negatives, and stays inside its own run folder. It is a regression suite, not a capability evaluation: every fixture was written from the audit's own known traps, so a high score says the audit did not regress, not that it generalises. The capability evaluations, on a held-out repository, are in [`docs/evaluations/`](../../../docs/evaluations/).
+The plugin's `plugins/inbrace-model-upgrade/evals/` directory is its [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals) suite for the model-transition audit. It checks, on a seeded fixture per transition, that the audit still finds what it found when it was released, holds its negatives, and stays inside its own run folder. It is a regression suite, not a capability evaluation: every fixture was written from the audit's own known traps, so a high score says the audit did not regress, not that it generalises. The capability evaluations, on a held-out repository, are in [`docs/evaluations/`](evaluations/).
 
 ## Run it locally, never in CI
 
 Every run is a real model call, counted against your plan's usage ([Requirements](https://code.claude.com/docs/en/plugin-evals#requirements)). This suite runs only on a maintainer's machine, signed in with their own subscription:
 
 - never as a CI job, and never with an API key stored as a secret, although the documentation shows that setup ([Run evals in CI](https://code.claude.com/docs/en/plugin-evals#run-evals-in-ci)): a full run costs tens of dollars, and nothing should spend that unattended;
-- only with the audit's non-interactive arguments, `--scope full --mode agents --stop-at-report`, so a run can never reach a gate that applies changes ([transition-audit N02, N15](../skills/transition-audit/SKILL.md)).
+- only with the audit's non-interactive arguments, `--scope full --mode agents --stop-at-report`, so a run can never reach a gate that applies changes ([transition-audit N02, N15](../plugins/inbrace-model-upgrade/skills/transition-audit/SKILL.md)).
 
 Before the first run, set up the sandbox's prerequisites. The audit needs `Bash` (for `git status`, `grep` and `wc`), and a granted `Bash` runs only under Claude Code's OS-level sandbox, which on Linux needs `bubblewrap` and `socat` from your distribution's packages; [Sandboxing](https://code.claude.com/docs/en/sandboxing) lists them per platform ([Grant tools](https://code.claude.com/docs/en/plugin-evals#grant-tools)).
 
@@ -19,7 +19,7 @@ claude plugin eval . --scaffold --ablation none --model claude-opus-5-5 --no-pub
   --allow-tools Bash Write Edit
 ```
 
-- Only `Bash`, `Write` and `Edit` are granted, and every shell command runs under the eval sandbox's rules ([What a run can access](https://code.claude.com/docs/en/plugin-evals#security)); the audit itself needs nothing beyond the project ([transition-audit N22](../skills/transition-audit/SKILL.md)).
+- Only `Bash`, `Write` and `Edit` are granted, and every shell command runs under the eval sandbox's rules ([What a run can access](https://code.claude.com/docs/en/plugin-evals#security)); the audit itself needs nothing beyond the project ([transition-audit N22](../plugins/inbrace-model-upgrade/skills/transition-audit/SKILL.md)).
 
 - `--scaffold` runs each case's `scaffold.sh`, which copies the fixture into the run's empty workspace ([Seed the workspace](https://code.claude.com/docs/en/plugin-evals#add-setup-or-history-with-case-yaml)). It runs as you, so pass it only for this suite.
 - `--ablation none` skips the no-plugin baseline: without the plugin, the audit's slash command does not exist, so a baseline would measure nothing. The comparison with a plain Claude session is the one in `docs/evaluations/`.
@@ -51,7 +51,7 @@ Every grader is deterministic: no judge model, so a score costs nothing beyond t
 
 The Sonnet graders were calibrated against a hand-graded run of 0.6.0 on the same fixture: on its findings file they agree with the hand grading's strict score on every row, apart from the three rows #64 turned from `re-test` into `change`. The Haiku graders, added in 0.8.0, have not yet been calibrated against a hand-graded run; their key says how a row gets adjusted.
 
-A file changed only by the audit's shell commands is not caught by the `Write`/`Edit` checks; the audit's own close lists every file the run created or changed outside its folder ([transition-audit-apply N17](../skills/transition-audit-apply/SKILL.md)). The `files` grader target was not used for this, because it also lists placeholder files the sandbox creates in the workspace while a shell command runs.
+A file changed only by the audit's shell commands is not caught by the `Write`/`Edit` checks; the audit's own close lists every file the run created or changed outside its folder ([transition-audit-apply N17](../plugins/inbrace-model-upgrade/skills/transition-audit-apply/SKILL.md)). The `files` grader target was not used for this, because it also lists placeholder files the sandbox creates in the workspace while a shell command runs.
 
 ## Fixtures
 
