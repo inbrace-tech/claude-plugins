@@ -2,6 +2,16 @@
 
 The plugin was named `claude-config` before 0.4.0 and `inbrace-config` before 0.9.0. Entries before 0.7.0 are condensed; the full notes of each release are on the repository's GitHub Releases page.
 
+## 0.9.0
+
+### Minor Changes
+
+- The plugin is renamed `inbrace-model-upgrade`; the marketplace maps the old name, so update the marketplace and run `/plugin install inbrace-model-upgrade@inbrace` once. ([#161](https://github.com/inbrace-tech/claude-plugins/pull/161) by [@ropdias](https://github.com/ropdias))
+
+### Patch Changes
+
+- The eval suite's README names the sandbox prerequisites and links the platform list instead of showing a package-manager command. ([#159](https://github.com/inbrace-tech/claude-plugins/pull/159) by [@ropdias](https://github.com/ropdias))
+
 ## 0.8.2
 
 ### Patch Changes
